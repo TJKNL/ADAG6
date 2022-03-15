@@ -1,8 +1,6 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import Column, String, Integer, Float
 
-from daos.status_dao import StatusDAO
-from db import Base
+from inventoryservice.db import Base
 
 
 class InventoryDAO(Base):

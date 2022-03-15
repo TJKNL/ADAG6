@@ -1,16 +1,14 @@
-from datetime import datetime
-
 from flask import jsonify
 
 from daos.inventory_dao import InventoryDAO
-from db import Session
+from inventoryservice.db import Session
 
 
 class Inventory:
     @staticmethod
     def create(body):
         session = Session()
-        inventory_item = InventoryDAO(body['product_price'], body['product_name'], body['product_count'])
+        inventory_item = InventoryDAO(body['product_name'], body['product_price'], body['product_count'])
         session.add(inventory_item)
         session.commit()
         session.refresh(inventory_item)
