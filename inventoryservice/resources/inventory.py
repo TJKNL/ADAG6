@@ -36,11 +36,11 @@ class Inventory:
 
 
     @staticmethod
-    def get_NonZero(d_id):
+    def get_nonzero():
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
-        # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
-        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.id == d_id).first()
+        # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
+        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_count > 0)
 
         if inventory_item:
             text_out = {
