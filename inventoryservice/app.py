@@ -23,5 +23,8 @@ def get_delivery(d_id):
 def delete_item(d_id):
     return Inventory.delete(d_id)
 
+@app.route('/inventory/menu', methods=['GET'])
+def get_menu():
+    return Inventory.get_nonzero()
 
 app.run(host='0.0.0.0', port=5003)

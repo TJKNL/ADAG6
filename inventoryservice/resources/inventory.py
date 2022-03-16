@@ -8,12 +8,12 @@ class Inventory:
     @staticmethod
     def create(body):
         session = Session()
-        inventory_item = InventoryDAO(body['product_name'], body['product_price'], body['product_count'])
+        inventory_item = InventoryDAO(body['product_id'], body['product_count'])
         session.add(inventory_item)
         session.commit()
         session.refresh(inventory_item)
         session.close()
-        return jsonify({'product_id': inventory_item.id}), 200
+        return jsonify({'inventory_id': inventory_item.id}), 200
 
     @staticmethod
     def get(d_id):
@@ -24,8 +24,7 @@ class Inventory:
 
         if inventory_item:
             text_out = {
-                "product_name:": inventory_item.product_name,
-                "product_price": inventory_item.product_price,
+                "product_name:": inventory_item.product_id,
                 "product_count": inventory_item.product_count,
             }
             session.close()
@@ -40,13 +39,12 @@ class Inventory:
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
-        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_count > 0).first()
+        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_count > 0).all()
 
         if inventory_item:
             text_out = {
-                "product_name:": inventory_item.product_name,
-                "product_price": inventory_item.product_price,
-                "product_count": inventory_item.product_count,
+                "product_id:": inventory_item.product_id,
+                "product_count": inventory_item.product_count
             }
             session.close()
             return jsonify(text_out), 200
