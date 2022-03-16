@@ -4,7 +4,7 @@ from inventoryservice.db import Base
 
 
 class CatalogueDAO(Base):
-    __tablename__= 'Products'
+    __tablename__ = 'Products'
     id = Column(Integer, primary_key=True)# Auto generated primary key
     product_name = Column(String)
     product_price = Column(Float)
