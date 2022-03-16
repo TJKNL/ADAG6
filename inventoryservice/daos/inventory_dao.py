@@ -12,5 +12,4 @@ class InventoryDAO(Base):
 
 
     def __init__(self, product_id, product_count):
-        self.product_id = product_id
         self.product_count = product_count

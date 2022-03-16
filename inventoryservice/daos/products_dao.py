@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, Float
 from inventoryservice.db import Base
 
 
-class CatalogueDAO(Base):
+class ProductsDAO(Base):
     __tablename__ = 'Products'
     id = Column(Integer, primary_key=True)# Auto generated primary key
     product_name = Column(String)
