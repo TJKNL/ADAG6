@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Float
+from sqlalchemy import Column, String, Integer, Float, UniqueConstraint
 
 from inventoryservice.db import Base
 
@@ -6,7 +6,7 @@ from inventoryservice.db import Base
 class ProductsDAO(Base):
     __tablename__ = 'Products'
     id = Column(Integer, primary_key=True)# Auto generated primary key
-    product_name = Column(String)
+    product_name = Column(String, unique=True)
     product_price = Column(Float)
     product_cost = Column(Float)
 

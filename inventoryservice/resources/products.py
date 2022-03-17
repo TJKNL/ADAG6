@@ -8,8 +8,14 @@ class Products:
     def create(body):
         session = Session()
         product_item = ProductsDAO(body['product_name'], body['product_price'],body['product_cost'])
-        session.add(product_item)
-        session.commit()
-        session.refresh(product_item)
-        session.close()
-        return jsonify({'product_id': product_item.id}), 200
+
+        try:
+            session.add(product_item)
+            session.commit()
+            session.refresh(product_item)
+            session.close()
+            return jsonify({'product_id': product_item.id}), 200
+        except:
+
+            session.close()
+            return "Error: most likely Product already exists in Database", 500

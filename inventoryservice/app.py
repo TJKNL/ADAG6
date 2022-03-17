@@ -18,7 +18,7 @@ def create_product():
 @app.route('/inventory', methods=['POST'])
 def create_inventory():
     req_data = request.get_json()
-    return Products.create(req_data)
+    return Inventory.create(req_data)
 
 @app.route('/inventory/<d_id>', methods=['GET'])
 def get_delivery(d_id):
