@@ -25,7 +25,6 @@ def get_inventory(d_id):
     return Inventory.get(d_id)
 
 
-
 @app.route('/inventory/<d_id>', methods=['DELETE'])
 def delete_item(d_id):
     return Inventory.delete(d_id)

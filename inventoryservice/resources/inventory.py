@@ -1,4 +1,5 @@
 from flask import jsonify
+import json
 from datetime import datetime
 from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
@@ -9,7 +10,7 @@ class Inventory:
     @staticmethod
     def create(body):
         session = Session()
-        inventory_item = InventoryDAO(body['product_id'], body['product_quantity'],datetime.now())
+        inventory_item = InventoryDAO(body['product_id'], body['product_quantity'], body['product_price'])
 
         try:
             session.add(inventory_item)
@@ -26,14 +27,16 @@ class Inventory:
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
-        inventory_item = session.query(InventoryDAO, ProductsDAO).filter(InventoryDAO.product_id == ProductsDAO.id).first()
-        return print(inventory_item)
+        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_id == d_id).first()
 
         if inventory_item:
+            product_object = inventory_item.product
             text_out = {
-                "product_name": inventory_item.product_name,
+                "product_name": product_object.product_name,
                 "product_id:": inventory_item.product_id,
-                "product_count": inventory_item.product_quantity
+                "product_price": inventory_item.product_price,
+                "product_cost": product_object.product_cost,
+                "product_quantity": inventory_item.product_quantity
             }
             session.close()
             return jsonify(text_out), 200
@@ -47,9 +50,11 @@ class Inventory:
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
-        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_count > 0).all()
+        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
 
         if inventory_item:
+            for i in inventory_item:
+
             text_out = {
                 "product_id:": inventory_item.product_id,
                 "product_count": inventory_item.product_count

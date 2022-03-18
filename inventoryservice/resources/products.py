@@ -7,7 +7,7 @@ class Products:
     @staticmethod
     def create(body):
         session = Session()
-        product_item = ProductsDAO(body['product_name'], body['product_price'],body['product_cost'])
+        product_item = ProductsDAO(body['product_name'], body['product_cost'])
 
         try:
             session.add(product_item)
