@@ -50,10 +50,9 @@ class Inventory:
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
-        inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
+        inventory = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
 
-        if inventory_item:
-
+        if inventory:
 
             text_out = {
                 "product_id:": inventory_item.product_id,

@@ -19,3 +19,15 @@ class Products:
 
             session.close()
             return "Error: most likely Product already exists in Database", 500
+
+    @staticmethod
+    def delete(d_id):
+        session = Session()
+        effected_rows = session.query(ProductsDAO).filter(ProductsDAO.id == d_id).delete()
+        session.commit()
+        session.close()
+        if effected_rows == 0:
+            return jsonify({'message': f'There is no item in products with id {d_id}'}), 404
+        else:
+            return jsonify({'message': 'The item was removed from products'}), 200
+
