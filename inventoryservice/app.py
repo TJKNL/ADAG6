@@ -21,8 +21,10 @@ def create_inventory():
     return Inventory.create(req_data)
 
 @app.route('/inventory/<d_id>', methods=['GET'])
-def get_delivery(d_id):
+def get_inventory(d_id):
     return Inventory.get(d_id)
+
+
 
 @app.route('/inventory/<d_id>', methods=['DELETE'])
 def delete_item(d_id):
