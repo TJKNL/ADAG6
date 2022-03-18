@@ -46,6 +46,9 @@ class OrderForm(FlaskForm):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = OrderForm()
+
+    ## Ik kan niet de prijzen en id's uit het menu halen. dat is wat niet kan okee dopei
+
     # Retrieve menu from class to avoid duplicate requests.
     menu = OrderForm.menu
     message = ""
