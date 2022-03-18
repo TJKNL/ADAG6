@@ -20,7 +20,7 @@ class Inventory:
             return jsonify({'inventory_id': inventory_item.id}), 200
         except:
             session.close()
-            return "Error: Most likely inventroy item already exists", 500
+            return "Error: Most likely inventory item already exists", 500
 
     @staticmethod
     def get(d_id):
@@ -53,7 +53,7 @@ class Inventory:
         inventory_item = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
 
         if inventory_item:
-            for i in inventory_item:
+
 
             text_out = {
                 "product_id:": inventory_item.product_id,

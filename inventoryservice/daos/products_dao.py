@@ -9,6 +9,6 @@ class ProductsDAO(Base):
     product_name = Column(String, unique=True)
     product_cost = Column(Float)
 
-    def __init__(self, product_name, product_price, product_cost):
+    def __init__(self, product_name, product_cost):
         self.product_name = product_name
         self.product_cost = product_cost
