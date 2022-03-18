@@ -8,10 +8,22 @@ import requests
 
 from inventoryservice.db import Base, engine
 
-r = requests.get(url=' http://131.155.205.108:5005/menutest')
-menu = r.json()
-options = []
-for item in menu['order']:
-    options.append((item['id'], f"{item['name']}: €{item['price']}"))
-print(options)
+class OrderForm(FlaskForm):
 
+
+
+    r = requests.get(url=' http://localhost:5005/menutest')
+    menu = r.json()
+    options = []
+    for item in menu['menu']:
+        options.append(f"{item['name']}: €{item['price']}")
+    product = SelectField(
+        'product:',
+        choices=options)
+    quantity = IntegerField('Quantity:', validators=[DataRequired()])
+    submit_order = SubmitField('Place Order')
+
+
+
+form = OrderForm()
+print(form.menu)

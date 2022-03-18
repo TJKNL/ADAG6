@@ -1,4 +1,4 @@
-from flask import jsonify
+sqfrom flask import jsonify
 
 from daos.inventory_dao import InventoryDAO
 from inventoryservice.db import Session
