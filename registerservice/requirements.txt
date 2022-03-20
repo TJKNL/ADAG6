@@ -1,0 +1,7 @@
+flask
+Flask-WTF
+pandas
+numpy
+sqlalchemy
+sqlalchemy-utils
+sqlalchemy-bigquery
