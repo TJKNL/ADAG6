@@ -1,10 +1,4 @@
-import random
-import sqlite3
-import datetime as dt
-import logging
-from dateutil.parser import parse
-import pandas as pd
-
+import os
 import requests
 from datetime import datetime
 
@@ -21,7 +15,7 @@ app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 bootstrap = Bootstrap(app)
 
-import os
+
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -63,9 +57,8 @@ def index():
                 return render_template('index.html', form=form, message=message)
 
             revenue = quantity * menu[product_id]['price']
-
             # Give user feedback
-            message = f"Order total: €{revenue}"
+            message = f"Your order has been sent. Order total: €{revenue}"
 
             order_content = {}
             for i in range(0, 1):
