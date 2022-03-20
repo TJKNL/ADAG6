@@ -86,7 +86,7 @@ def index():
 
     # TODO: Check payment.
 
-    # TODO: Sent order.
+    # TODO: Send order.
 
     return render_template('index.html', form=form, message=message)
 
