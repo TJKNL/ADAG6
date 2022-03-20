@@ -61,7 +61,7 @@ class Order:
                         "product_id:": p.product_id,
                         "product_name": p.product_name,
                         "product_price": p.product_price,
-                        "product_count": p.product_quantity
+                        "product_quantity": p.product_quantity
                     }
                     order_content["order_content"].append(text_out)
 
