@@ -33,31 +33,48 @@ class Order:
             session.close()
             return jsonify({'order_id': order.id}), 200
 
+
     @staticmethod
-    def get(d_id):
+    def get_unfulfilled():
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
-        delivery = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(d_id)).first()
+        unfulfilled_orders = session.query(OrderDAO).filter(OrderDao.status == 'Unfulfilled').all()
 
-        if delivery:
-            status_obj = delivery.status
-            text_out = {
-                "customer_id:": delivery.customer_id,
-                "provider_id": delivery.provider_id,
-                "package_id": delivery.package_id,
-                "order_time": delivery.order_time.isoformat(),
-                "delivery_time": delivery.delivery_time.isoformat(),
-                "status": {
-                    "status": status_obj.status,
-                    "last_update": status_obj.last_update.isoformat(),
+        if unfulfilled_orders:
+            unfulfilled_orders_list = {"unfulfilled_orders_list": []}
+            order_id_list = []
+
+            for order in unfulfilled_orders:
+                text_out = {
+                    "id:": order.id,
                 }
-            }
+                order_id_list.append(text_out)
+
+            for i in order_id_list:
+                unfulfilled_order_content = session.query(ContentDAO).filter(ContentDAO.id == i.id).all()
+
+                order_content = {"order_content": []}
+
+                for p in unfulfilled_order_content:
+                    text_out = {
+                        "product_id:": p.product_id,
+                        "product_name": p.product_name,
+                        "product_price": p.product_price,
+                        "product_count": p.product_quantity
+                    }
+                    order_content["order_content"].append(text_out)
+
+                unfulfilled_orders_list["unfulfilled_orders_list"].append(order_content)
+
             session.close()
-            return jsonify(text_out), 200
+
+            return jsonify(unfulfilled_orders_list), 200
+
         else:
             session.close()
-            return jsonify({'message': f'There is no delivery with id {d_id}'}), 404
+            return jsonify({'message': f'There are no unfulfilled orders'}), 404
+
 
     @staticmethod
     def delete(d_id):

@@ -13,14 +13,11 @@ def create_delivery(request):
         return abort(405)
 
 
-def get_delivery(request):
-    print(request.path)
+def get_unfulfilled_orders(request):
     from flask import abort
     if request.method == 'GET':
         Base.metadata.create_all(engine)
-        request_args = request.args
-        d_id = request_args['d_id']
-        return Delivery.get(d_id)
+        return Delivery.get_unfulfilled()
     else:
         return abort(405)
 
