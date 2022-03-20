@@ -44,7 +44,6 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
 
-
     @staticmethod
     def get_nonzero():
         session = Session()
@@ -53,16 +52,24 @@ class Inventory:
         inventory = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
 
         if inventory:
+            menu = {"menu": []}
+            product_list = []
+            for p in inventory:
+                product_object = p.product  # link to product DB
+                text_out = {
+                    "product_id:": p.product_id,
+                    "product_name": product_object.product_name,
+                    "product_price": p.product_price,
+                    "product_count": p.product_quantity
+                }
+                product_list.append(text_out)
 
-            text_out = {
-                "product_id:": inventory_item.product_id,
-                "product_count": inventory_item.product_count
-            }
+            menu["menu"] = product_list
             session.close()
-            return jsonify(text_out), 200
+            return jsonify(menu), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no item in inventory'}), 404
+            return jsonify({'message': f'There are no items in inventory'}), 404
 
     # def create_delivery():
     #     item1 = {'id': 3, 'name': 'Heiniken', 'price': 1.5, 'quantity': 10}
