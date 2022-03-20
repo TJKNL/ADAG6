@@ -10,11 +10,13 @@ from flask_bootstrap import Bootstrap
 
 from inventoryservice.db import Base, engine
 
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
-bootstrap = Bootstrap(app)
 
+
+bootstrap = Bootstrap(app)
 
 
 SECRET_KEY = os.urandom(32)
@@ -81,5 +83,5 @@ def index():
 
     return render_template('index.html', form=form, message=message)
 
-
+  
 app.run(host='0.0.0.0', port=5003)
