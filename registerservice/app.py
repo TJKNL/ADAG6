@@ -6,6 +6,7 @@ from dateutil.parser import parse
 import pandas as pd
 
 import requests
+from datetime import datetime
 
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
@@ -27,13 +28,17 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 class OrderForm(FlaskForm):
+    # TODO: replace url with real menu service.
     r = requests.get(url=' http://localhost:5005/menutest')
     menu = r.json()
-
+    print(menu)
     options = []
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
-    for item in menu['menu']:
-        options.append((item['id'], f"{item['name']}: €{item['price']}"))
+    for key in menu.keys():
+        item = menu[key]
+        print(item)
+        options.append((key, f"{item['name']}: €{item['price']}"))
+
     product = SelectField(
         'product:',
         choices=options)
@@ -41,35 +46,49 @@ class OrderForm(FlaskForm):
     submit_order = SubmitField('Place Order')
 
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = OrderForm()
-
-    ## Ik kan niet de prijzen en id's uit het menu halen. dat is wat niet kan okee dopei
-
     # Retrieve menu from class to avoid duplicate requests.
     menu = OrderForm.menu
     message = ""
-    print(menu)
-    products = {}
-    for item in menu:
-        print(item)
-        products[item.id] = item.price
+    order = {}
 
     if form.validate_on_submit():
         if form.submit_order.data:
             quantity = form.quantity.data
             product_id = form.product.data
-            print(menu)
-            #total_price = quantity * menu['menu'].price[menu.id == product_id]
+            if quantity > menu[product_id]['quantity']:
+                message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."
+                return render_template('index.html', form=form, message=message)
+
+            revenue = quantity * menu[product_id]['price']
 
             # Give user feedback
-            message = f"Order total: 10"
+            message = f"Order total: €{revenue}"
 
+            order_content = {}
+            for i in range(0, 1):
+                order_content[product_id] = {
+                    "product_name": menu[product_id]['name'],
+                    "product_price": menu[product_id]['price'],
+                    "quantity": menu[product_id]['quantity']
+                }
 
-    return render_template('index.html', form=form, message=menu)
+            order = {
+                "order_info": {
+                    "revenue": revenue,
+                    "status": "UNFULFILLED",
+                    "timestamp": datetime.now()
+                },
+                "order_content": order_content
+            }
+
+    # TODO: Check payment.
+
+    # TODO: Sent order.
+
+    return render_template('index.html', form=form, message=message)
 
 
 app.run(host='0.0.0.0', port=5003)
