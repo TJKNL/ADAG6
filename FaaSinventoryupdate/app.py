@@ -1,18 +1,18 @@
 from flask import Flask, request
 
-from inventoryservice.db import Base, engine
-from resources.products import Products
-from resources.inventory import Inventory
+from FaaSinventoryupdate.db import Base, engine
+from resources.order import Order
+from resources.content import Content
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
 
-@app.route('/products', methods=['POST'])
-def create_product():
+@app.route('/order', methods=['POST'])
+def create_order():
     req_data = request.get_json()
-    return Products.create(req_data)
+    return Order.create(req_data)
 
 
 @app.route('/inventory', methods=['POST'])

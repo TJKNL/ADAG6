@@ -1,14 +1,14 @@
 import datetime
 from flask import jsonify
-from daos.delivery_dao import DeliveryDAO
-from db import Session
+from FaaSinventoryupdate.daos.order_dao import OrderDAO
+from FaaSinventoryupdate.db import Session
 
 
-class Status:
+class Content:
     @staticmethod
     def update(d_id, status_text):
         session = Session()
-        delivery = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(d_id))[0]
+        delivery = session.query(ContentDAO).filter(ContentDAO.id == int(d_id))[0]
         delivery.status.status = status_text
         delivery.status.last_update = datetime.datetime.now()
         session.commit()

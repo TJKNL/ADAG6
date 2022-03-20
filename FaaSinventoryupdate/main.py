@@ -1,6 +1,6 @@
-from db import Base, engine
-from resources.delivery import Delivery
-from resources.status import Status
+from FaaSinventoryupdate.db import Base, engine
+from resources.order import Delivery
+from resources.content import Status
 
 
 def create_delivery(request):

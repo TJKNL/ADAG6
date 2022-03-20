@@ -1,17 +1,17 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
-from daos.status_dao import ContentDAO
-from db import Base
+from FaaSinventoryupdate.daos.content_dao import ContentDAO
+from FaaSinventoryupdate.db import Base
 
 
 class OrderDAO(Base):
-    __tablename__ = 'delivery'
+    __tablename__ = 'order_table'
     id = Column(Integer, primary_key=True)  # Auto generated primary key
     order_time = Column(DateTime)
     status = Column(String)
     # reference to status as foreign key relationship. This will be automatically assigned.
-    content_id = Column(Integer, ForeignKey('status.id'))
+    content_id = Column(Integer, ForeignKey('content.id'))
     # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
     # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
     content = relationship(ContentDAO.__name__, backref=backref("delivery", uselist=False))

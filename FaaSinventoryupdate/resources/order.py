@@ -1,27 +1,37 @@
 from datetime import datetime
-
+from sqlalchemy import desc
 from flask import jsonify
 
-from constant import STATUS_CREATED
-from daos.delivery_dao import DeliveryDAO
-from daos.status_dao import StatusDAO
-from db import Session
+from FaaSinventoryupdate.daos.order_dao import OrderDAO
+from FaaSinventoryupdate.daos.content_dao import ContentDAO
+from FaaSinventoryupdate.db import Session
 
 
-class Delivery:
+class Order:
     @staticmethod
     def create(body):
         session = Session()
-        delivery = DeliveryDAO(body['id'], body['customer_id'], body['provider_id'], body['package_id'], datetime.now(),
-                               datetime.strptime(body['delivery_time'], '%Y-%m-%d %H:%M:%S.%f'),
-                               StatusDAO(body['id'], STATUS_CREATED, datetime.now()))
+        highest_id = session.query(OrderDAO.id).order_by(desc(OrderDAO.id)).first()
 
+        if highest_id:
+            new_id = highest_id.id + 1
+            contentlist = {}
+            for content in body["order_content"]:
+                contentlist.append(ContentDAO(new_id, content['product_id'], content["product_name"],content["product_price"], content['quantity']))
 
-        session.add(delivery)
-        session.commit()
-        session.refresh(delivery)
-        session.close()
-        return jsonify({'delivery_id': delivery.id}), 200
+            order = OrderDAO(new_id, datetime.now(), "Unfulfilled", contentlist)
+            session.add(order)
+            session.commit()
+            session.refresh(order)
+            session.close()
+            return jsonify({'order_id': order.id}), 200
+        else:
+            order = OrderDAO(1, datetime.now(), "test", ContentDAO(1, 1, "test", 12.1, 1))
+            session.add(order)
+            session.commit()
+            session.refresh(order)
+            session.close()
+            return jsonify({'order_id': order.id}), 200
 
     @staticmethod
     def get(d_id):

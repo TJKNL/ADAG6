@@ -1,10 +1,10 @@
 from sqlalchemy import Column, String, Integer, TIMESTAMP, Float
 
-from db import Base
+from FaaSinventoryupdate.db import Base
 
 
 class ContentDAO(Base):
-    __tablename__ = 'status'
+    __tablename__ = 'content'
 
     id = Column(Integer, primary_key=True) # Auto generated primary key
     product_id = Column(Integer)
