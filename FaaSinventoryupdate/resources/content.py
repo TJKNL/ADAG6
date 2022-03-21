@@ -2,14 +2,30 @@ import datetime
 from flask import jsonify
 from FaaSinventoryupdate.daos.order_dao import OrderDAO
 from FaaSinventoryupdate.db import Session
-
+from FaaSinventoryupdate.daos.content_dao import ContentDAO
+from sqlalchemy import desc
 
 class Content:
     @staticmethod
-    def update(d_id, status_text):
+    def create(body, order_id):
         session = Session()
-        delivery = session.query(ContentDAO).filter(ContentDAO.id == int(d_id))[0]
-        delivery.status.status = status_text
-        delivery.status.last_update = datetime.datetime.now()
-        session.commit()
+        highest_id = session.query(ContentDAO.id).order_by(desc(ContentDAO.id)).first()
+        if highest_id:
+            new_id = highest_id.id + 1
+            for key in body.keys():
+                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"], body[key]["quantity"])
+                session.add(content)
+                session.commit()
+                session.refresh(content)
+                new_id += 1
+        else:
+            new_id =  1
+            for key in body.keys():
+                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"], body[key]["quantity"])
+                session.add(content)
+                session.commit()
+                session.refresh(content)
+                new_id += 1
+
+        session.close()
         return jsonify({'message': 'The delivery status was updated'}), 200

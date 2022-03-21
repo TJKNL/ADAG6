@@ -12,12 +12,9 @@ class OrderDAO(Base):
     status = Column(String)
     # reference to status as foreign key relationship. This will be automatically assigned.
     content_id = Column(Integer, ForeignKey('content.id'))
-    # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
-    # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
-    content = relationship(ContentDAO.__name__, backref=backref("delivery", uselist=False))
 
-    def __init__(self, id, order_time, status, content):
+    def __init__(self, id, order_time, status, content_id):
         self.id = id
         self.order_time = order_time
         self.status = status
-        self.content = content
+        self.content = content_id

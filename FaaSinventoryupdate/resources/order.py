@@ -5,6 +5,7 @@ from flask import jsonify
 from FaaSinventoryupdate.daos.order_dao import OrderDAO
 from FaaSinventoryupdate.daos.content_dao import ContentDAO
 from FaaSinventoryupdate.db import Session
+from FaaSinventoryupdate.resources.content import Content
 
 
 class Order:
@@ -15,24 +16,22 @@ class Order:
 
         if highest_id:
             new_id = highest_id.id + 1
-            contentlist = {}
-            for content in body["order_content"]:
-                contentlist.append(ContentDAO(new_id, content['product_id'], content["product_name"],content["product_price"], content['quantity']))
-
-            order = OrderDAO(new_id, datetime.now(), "Unfulfilled", contentlist)
+            order = OrderDAO(new_id, datetime.now(), "Unfulfilled", new_id)
             session.add(order)
             session.commit()
             session.refresh(order)
             session.close()
+            Content.create(body["order_content"], new_id)
+
             return jsonify({'order_id': order.id}), 200
         else:
-            order = OrderDAO(1, datetime.now(), "test", ContentDAO(1, 1, "test", 12.1, 1))
+            order = OrderDAO(1, datetime.now(), "Unfulfilled", 1)
             session.add(order)
             session.commit()
             session.refresh(order)
+            Content.create(body["order_content"], 1)
             session.close()
             return jsonify({'order_id': order.id}), 200
-
 
     @staticmethod
     def get_unfulfilled():
