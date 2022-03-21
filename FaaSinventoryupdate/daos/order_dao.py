@@ -11,7 +11,7 @@ class OrderDAO(Base):
     order_time = Column(DateTime)
     status = Column(String)
     # reference to status as foreign key relationship. This will be automatically assigned.
-    content_id = Column(Integer, ForeignKey('content.id'))
+
 
     def __init__(self, id, order_time, status):
         self.id = id

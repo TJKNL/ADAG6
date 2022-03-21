@@ -7,6 +7,7 @@ class ContentDAO(Base):
     __tablename__ = 'content'
 
     id = Column(Integer, primary_key=True) # Auto generated primary key
+    order_id = Column(Integer)
     product_id = Column(Integer)
     product_name = Column(String)
     product_price = Column(Float)
