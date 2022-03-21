@@ -16,7 +16,7 @@ class Order:
 
         if highest_id:
             new_id = highest_id.id + 1
-            order = OrderDAO(new_id, datetime.now(), "Unfulfilled", new_id)
+            order = OrderDAO(new_id, datetime.now(), "Unfulfilled")
             session.add(order)
             session.commit()
             session.refresh(order)
@@ -25,7 +25,7 @@ class Order:
 
             return jsonify({'order_id': order.id}), 200
         else:
-            order = OrderDAO(1, datetime.now(), "Unfulfilled", 1)
+            order = OrderDAO(1, datetime.now(), "Unfulfilled")
             session.add(order)
             session.commit()
             session.refresh(order)
