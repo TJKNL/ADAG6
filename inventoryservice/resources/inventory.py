@@ -71,12 +71,6 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There are no items in inventory'}), 404
 
-    # def create_delivery():
-    #     item1 = {'id': 3, 'name': 'Heiniken', 'price': 1.5, 'quantity': 10}
-    #     item2 = {'id': 2, 'name': 'Pilsie', 'price': 3, 'quantity': 3}
-    #     item3 = {'id': 5, 'name': 'Heineken', 'price': 20, 'quantity': 3}
-    #     return json.dumps({'menu': [item1, item2, item3]})
-
     @staticmethod
     def delete(d_id):
         session = Session()
