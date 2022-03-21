@@ -71,8 +71,6 @@ def index():
             order = {
                 "order_info": {
                     "revenue": revenue,
-                    "status": "UNFULFILLED",
-                    "timestamp": datetime.now()
                 },
                 "order_content": order_content
             }
