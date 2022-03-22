@@ -1,6 +1,4 @@
 from flask import jsonify
-import json
-from datetime import datetime
 
 from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO

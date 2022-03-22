@@ -3,6 +3,7 @@ from flask import jsonify
 from daos.products_dao import ProductsDAO
 from inventoryservice.db import Session
 
+
 class Products:
     @staticmethod
     def create(body):
@@ -30,4 +31,3 @@ class Products:
             return jsonify({'message': f'There is no item in products with id {d_id}'}), 404
         else:
             return jsonify({'message': 'The item was removed from products'}), 200
-
