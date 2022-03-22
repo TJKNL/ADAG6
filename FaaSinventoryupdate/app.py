@@ -19,9 +19,8 @@ def create_order():
 def get_unfulfilled_orders():
     return Order.get_unfulfilled()
 
-@app.route('/order/<d_id>/status', methods=['PUT'])
+@app.route('/order/<d_id>/<status>', methods=['PUT'])
 def update_order_status(d_id, status):
-
     return Order.update_status(d_id, status)
 
 
