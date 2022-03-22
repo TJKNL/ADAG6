@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
-
+# This file mimics the get_menu function of the inventory service for demo purposes.
 @app.route('/menutest', methods=['GET'])
 def create_delivery():
     item1 = {'name': 'Heiniken', 'price': 1.5, 'quantity': 10}
