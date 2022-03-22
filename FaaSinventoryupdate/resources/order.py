@@ -73,9 +73,10 @@ class Order:
             session.close()
             return jsonify({'message': f'There are no unfulfilled orders'}), 404
 
-    def update_status(d_id, status_text):
+    def update_status(body):
         session = Session()
+        d_id = body["d_id"]
         order = session.query(OrderDAO).filter(OrderDAO.id == d_id).first()
-        order.status = status_text
+        order.status = body["status"]
         session.commit()
         return jsonify({'message': 'The order status was updated'}), 200
