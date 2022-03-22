@@ -22,7 +22,7 @@ def get_unfulfilled_orders():
 @app.route('/order/<d_id>/status', methods=['PUT'])
 def update_delivery_status(d_id):
     status = request.args.get('status')
-    return Status.update(d_id, status)
+    return Order.update_status(d_id, status)
 
 #
 # @app.route('/inventory', methods=['POST'])

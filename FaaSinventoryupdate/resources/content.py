@@ -5,6 +5,7 @@ from db import Session
 from daos.content_dao import ContentDAO
 from sqlalchemy import desc
 
+
 class Content:
     @staticmethod
     def create(body, order_id):
@@ -13,15 +14,17 @@ class Content:
         if highest_id:
             new_id = highest_id.id + 1
             for key in body.keys():
-                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"], body[key]["quantity"])
+                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"],
+                                     body[key]["quantity"])
                 session.add(content)
                 session.commit()
                 session.refresh(content)
                 new_id += 1
         else:
-            new_id =  1
+            new_id = 1
             for key in body.keys():
-                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"], body[key]["quantity"])
+                content = ContentDAO(new_id, order_id, key, body[key]["product_name"], body[key]["product_price"],
+                                     body[key]["quantity"])
                 session.add(content)
                 session.commit()
                 session.refresh(content)
