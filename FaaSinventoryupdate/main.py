@@ -26,10 +26,8 @@ def update_order_status(request):
     from flask import abort
     if request.method == 'PUT':
         Base.metadata.create_all(engine)
-        request_args = request.args
-        status = request_args['status']
-        d_id = request_args['d_id']
-        return Order.update_status(d_id, status)
+        request_json = request.get_json(silent=True)
+        return Order.update_status(request_json)
     else:
         return abort(405)
 
