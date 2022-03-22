@@ -1,19 +1,15 @@
 import os
 import requests
-from datetime import datetime
 
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, SelectField
+from wtforms import SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-
-from inventoryservice.db import Base, engine
 
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-Base.metadata.create_all(engine)
 
 
 bootstrap = Bootstrap(app)
@@ -24,7 +20,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 class OrderForm(FlaskForm):
-    # TODO: replace url with real menu service.
+    # TODO: replace url with actual menu service.
     r = requests.get(url=' http://localhost:5005/menutest')
     menu = r.json()
     options = []
