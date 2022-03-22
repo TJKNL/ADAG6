@@ -15,7 +15,7 @@ def create_order():
     return Order.create(req_data)
 
 
-@app.route('/order/<d_id>', methods=['GET'])
+@app.route('/order/unfulfilled', methods=['GET'])
 def get_unfulfilled_orders():
     return Order.get_unfulfilled()
 
