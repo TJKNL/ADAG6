@@ -33,10 +33,13 @@ class Order:
             session.close()
             return jsonify({'order_id': order.id}), 200
 
+    # Function to get all unfulfilled orders
     @staticmethod
     def get_unfulfilled():
         session = Session()
 
+        # Extract all orders from order table that have status unfulfilled
+        # Store these order_ids in a list
         unfulfilled_orders = session.query(OrderDAO).filter(OrderDAO.status == 'Unfulfilled').all()
         unfulfilled_orders_dict = {}
 
@@ -46,10 +49,12 @@ class Order:
             for order in unfulfilled_orders:
                 order_id_list.append(order.id)
 
+            # For all order_ids, get the order_content from the content table
             for i in order_id_list:
                 unfulfilled_order_content = session.query(ContentDAO).filter(ContentDAO.order_id == i).all()
                 order_content = {}
 
+                # For all products in the order content, store the product information
                 for p in unfulfilled_order_content:
                     text_out = {
                         "product_name": p.product_name,
