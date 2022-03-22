@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Float, ForeignKey, DateTime, UniqueConstraint
+from sqlalchemy import Column, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship, backref
 from inventoryservice.db import Base
 from daos.products_dao import ProductsDAO

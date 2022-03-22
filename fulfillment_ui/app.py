@@ -2,11 +2,9 @@ import os
 import requests
 from datetime import datetime
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, SelectField, BooleanField, HiddenField
-from wtforms_components import read_only
-from wtforms.validators import DataRequired
+from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
 from inventoryservice.db import Base, engine
@@ -15,21 +13,25 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
+# Initialize Flask Bootstrap for WTForm.
 bootstrap = Bootstrap(app)
 
+# Generate CSRF token for form.
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 
 class FulfillmentForm(FlaskForm):
+    # FlaskWTF form class.
     fulfilled = BooleanField("Fulfilled")
+    # Track order_id as hidden field.
     id = HiddenField()
-    submit_order = SubmitField('Fulfill order(s)')
+    submit_order = SubmitField('Fulfill order')
 
 
 @app.route('/fulfillment_ui', methods=['GET', 'POST'])
 def index():
-    # TODO: replace url with real order FAAS.
+    # TODO: replace url with real order FAAS. Assignment 2
     r = requests.get(url=' http://localhost:5005/unfulfilled')
 
     message = ""
@@ -54,14 +56,14 @@ def index():
 
     for form in forms:
         if form.validate_on_submit():
-            # Boolean field for fullfilment,
+            # Boolean field for fulfillment (checkmark).
             data = form.fulfilled.data
             if data:
                 order_id = form.id.data
                 print(form.id.data, data)
-                message = "Fulfillment processed!"
+                message = f"Fulfillment processed for order: {order_id}"
 
-    # TODO: Call change status FAAS & call order processing.
+    # TODO: Call change status FAAS & call order processing. Assignment 2
 
     return render_template('index.html', message=message, forms=forms, info=info)
 

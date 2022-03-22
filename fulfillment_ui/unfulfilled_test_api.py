@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask
 
 from inventoryservice.db import Base, engine
 # from resources.inventory import Inventory
@@ -10,6 +10,7 @@ app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
 
+# This function mimics the get_unfulfilled FAAS in Gcloud Functions.
 @app.route('/unfulfilled', methods=['GET'])
 def create_unfulfilled():
     order = {
