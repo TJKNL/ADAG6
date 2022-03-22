@@ -21,18 +21,18 @@ def get_unfulfilled_orders(request):
     else:
         return abort(405)
 
-#
-# def update_delivery_status(request):
-#     from flask import abort
-#     if request.method == 'PUT':
-#         Base.metadata.create_all(engine)
-#         request_args = request.args
-#         status = request_args['status']
-#         d_id = request_args['d_id']
-#         return Status.update(d_id, status)
-#     else:
-#         return abort(405)
-#
+
+def update_delivery_status(request):
+    from flask import abort
+    if request.method == 'PUT':
+        Base.metadata.create_all(engine)
+        request_args = request.args
+        status = request_args['status']
+        d_id = request_args['d_id']
+        return Status.update(d_id, status)
+    else:
+        return abort(405)
+
 #
 # def delete_delivery(request):
 #     from flask import abort
