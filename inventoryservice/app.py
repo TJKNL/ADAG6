@@ -46,4 +46,9 @@ def get_menu():
     return Inventory.get_nonzero()
 
 
+@app.route('inventory/<d_id>/<order_quantity>', methods=['POST'])
+def reduce(d_id, order_quantity):
+    return Inventory.reduce(d_id, order_quantity)
+
+
 app.run(host='0.0.0.0', port=5003)

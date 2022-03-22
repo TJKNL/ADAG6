@@ -82,3 +82,16 @@ class Inventory:
             return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
         else:
             return jsonify({'message': 'The item was removed from inventory'}), 200
+
+    @staticmethod
+    def reduce(d_id, order_quantity):
+        session = Session()
+        effected_rows = session.query(InventoryDAO).filter(
+            InventoryDAO.product_id == d_id).update(
+            {InventoryDAO.product_quantity: InventoryDAO.product_quantity - order_quantity})
+        session.commit()
+        session.close()
+        if effected_rows == 0:
+            return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
+        else:
+            return jsonify({'message': 'The quantity was reduced from inventory'}), 200
