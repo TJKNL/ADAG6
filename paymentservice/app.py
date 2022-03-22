@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask
 from resources.payment import Payment
 
 app = Flask(__name__)
