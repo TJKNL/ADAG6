@@ -1,7 +1,5 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, backref
 
-from daos.content_dao import ContentDAO
 from db import Base
 
 

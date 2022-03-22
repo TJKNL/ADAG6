@@ -2,7 +2,6 @@ from flask import Flask, request
 
 from db import Base, engine
 from resources.order import Order
-from resources.content import Content
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -20,8 +19,9 @@ def get_unfulfilled_orders():
     return Order.get_unfulfilled()
 
 @app.route('/order/<d_id>/<status>', methods=['PUT'])
-def update_order_status(d_id, status):
-    return Order.update_status(d_id, status)
+def update_order_status():
+    req_data = request.get_json()
+    return Order.update_status(req_data)
 
 
 app.run(host='0.0.0.0', port=5003)
