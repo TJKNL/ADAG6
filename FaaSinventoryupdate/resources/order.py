@@ -2,10 +2,10 @@ from datetime import datetime
 from sqlalchemy import desc
 from flask import jsonify
 
-from FaaSinventoryupdate.daos.order_dao import OrderDAO
-from FaaSinventoryupdate.daos.content_dao import ContentDAO
-from FaaSinventoryupdate.db import Session
-from FaaSinventoryupdate.resources.content import Content
+from daos.order_dao import OrderDAO
+from daos.content_dao import ContentDAO
+from db import Session
+from resources.content import Content
 
 
 class Order:

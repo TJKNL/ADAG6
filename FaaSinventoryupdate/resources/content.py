@@ -1,8 +1,8 @@
 import datetime
 from flask import jsonify
-from FaaSinventoryupdate.daos.order_dao import OrderDAO
-from FaaSinventoryupdate.db import Session
-from FaaSinventoryupdate.daos.content_dao import ContentDAO
+from daos.order_dao import OrderDAO
+from db import Session
+from daos.content_dao import ContentDAO
 from sqlalchemy import desc
 
 class Content:
