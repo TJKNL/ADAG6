@@ -1,4 +1,4 @@
-from FaaSinventoryupdate.db import Base, engine
+from db import Base, engine
 from resources.order import Order
 from resources.content import Content
 

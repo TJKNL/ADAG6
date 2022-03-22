@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, TIMESTAMP, Float
 
-from FaaSinventoryupdate.db import Base
+from db import Base
 
 
 class ContentDAO(Base):
