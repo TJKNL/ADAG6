@@ -11,7 +11,7 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-
+# Initialize Flask Bootstrap for WTForm.
 bootstrap = Bootstrap(app)
 
 # Generate CSRF token for form.
@@ -79,7 +79,7 @@ def index():
     # TODO: Check payment with payment service. Assignment 2
 
     # TODO: Send order. Assignment 2
-
+    print(order) # Print order for demo purposes.
     return render_template('index.html', form=form, message=message)
 
   

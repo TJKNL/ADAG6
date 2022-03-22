@@ -1,13 +1,13 @@
-from flask import Flask, request
+from flask import Flask
 
 from inventoryservice.db import Base, engine
-#from resources.inventory import Inventory
 
 import json
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
+
 
 # This file mimics the get_menu function of the inventory service for demo purposes.
 @app.route('/menutest', methods=['GET'])
