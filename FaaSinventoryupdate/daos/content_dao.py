@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, TIMESTAMP, Float
 
 from db import Base
 
-
+# Create ContentDAO with order content id, order id, and product id, name, price, and quantity
 class ContentDAO(Base):
     __tablename__ = 'content'
 

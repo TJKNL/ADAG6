@@ -9,9 +9,13 @@ from resources.content import Content
 
 
 class Order:
+
+    # Function to create order.
     @staticmethod
     def create(body):
         session = Session()
+        # Create order id: add one to the highest existing order id.
+        # At the time of creation, the order status is set to Unfulfilled.
         highest_id = session.query(OrderDAO.id).order_by(desc(OrderDAO.id)).first()
 
         if highest_id:
@@ -24,6 +28,8 @@ class Order:
             Content.create(body["order_content"], new_id)
 
             return jsonify({'order_id': order.id}), 200
+
+        # If the order table is empty, create order with order id 1.
         else:
             order = OrderDAO(1, datetime.now(), "Unfulfilled")
             session.add(order)
@@ -31,6 +37,7 @@ class Order:
             session.refresh(order)
             Content.create(body["order_content"], 1)
             session.close()
+
             return jsonify({'order_id': order.id}), 200
 
     # Function to get all unfulfilled orders.
