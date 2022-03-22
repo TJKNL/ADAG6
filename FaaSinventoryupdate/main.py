@@ -3,14 +3,14 @@ from resources.order import Order
 from resources.content import Content
 
 
-# def create_delivery(request):
-#     from flask import abort
-#     if request.method == 'POST':
-#         Base.metadata.create_all(engine)
-#         request_json = request.get_json(silent=True)
-#         return Delivery.create(request_json)
-#     else:
-#         return abort(405)
+def create_order(request):
+    from flask import abort
+    if request.method == 'POST':
+        Base.metadata.create_all(engine)
+        request_json = request.get_json(silent=True)
+        return Order.create(request_json)
+    else:
+        return abort(405)
 
 
 def get_unfulfilled_orders(request):
@@ -43,3 +43,4 @@ def get_unfulfilled_orders(request):
 #         return Delivery.delete(d_id)
 #     else:
 #         return abort(405)
+
