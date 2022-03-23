@@ -11,3 +11,6 @@ Google Cloud Fucntions is used for the three FaaS functions which are implemente
 
 ### Testing
 Each service can be run by executing the app.py file in the respective service directories.
+
+### Notes
+In a future release this application will be using Docker but this is not yet implemented.
