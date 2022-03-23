@@ -7,10 +7,10 @@ COPY requirements.txt .
 # Install required python packages
 RUN pip install --no-cache-dir -r requirements.txt
 # Copy all files in training-db local host directory to /usr/src/myapp in Docker container
-COPY .. .
+COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
-# Enviroment VariablesD
-ENV DB_URL  sqlite:///inventory.db
+# Enviroment Variables
+ENV DB_URL  sqlite:///delivery.db
 # Run our App
 CMD ["python3","app.py"]
