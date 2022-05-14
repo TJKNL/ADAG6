@@ -1,0 +1,44 @@
+{
+  "$schema": "http://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "output_encoding": "json",
+  "name": "InventoryOrderAggregate",
+  "port": 8081,
+  "endpoints": [
+    {
+      "endpoint": "/NewOrder/{order}/{amount}",
+      "method": "GET",
+      "extra_config": {
+        "proxy": {
+          "sequential": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/payment/{amount}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://order_record_service_ct:5000/"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "host": [
+            "gcppubsub://"
+          ],
+          "disable_host_sanitize": true,
+          "extra_config": {
+            "backend/pubsub/publisher": {
+              "topic_url": "projects/ada2022-341617/topics/order_req"
+            }
+          }
+        }
+      ]
+
+    }
+
+  ]
+
+}

@@ -76,9 +76,11 @@ def index():
                 "order_content": order_content
             }
 
-    # TODO: Check payment with payment service. Assignment 2
+    # TODO: Check payment with payment service and quantity check Assignment 2
+
 
     # TODO: Send order. Assignment 2
+
     print(order) # Print order for demo purposes.
     return render_template('index.html', form=form, message=message)
 
