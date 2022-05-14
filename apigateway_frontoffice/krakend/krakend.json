@@ -19,7 +19,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://order_record_service_ct:5000/"
+            "http://payment_service:5000/"
           ],
           "disable_host_sanitize": false
         }

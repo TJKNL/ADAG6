@@ -12,7 +12,7 @@ services:
   payment_service:
     build:
       context: ./../paymentservice
-    container_name: inventory_service_ct
+    container_name: payment_service
     ports:
       - "5000:5000"
 

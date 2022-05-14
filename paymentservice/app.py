@@ -10,4 +10,4 @@ def bank_request(amount):
     return Payment.bank_request(amount)
 
 
-app.run(host='0.0.0.0', port=5003)
+app.run(host='0.0.0.0', port=5000)
