@@ -1,8 +1,7 @@
 {
-  "$schema": "http://www.krakend.io/schema/v3.json",
   "version": 3,
   "output_encoding": "json",
-  "name": "InventoryOrderAggregate",
+  "name": "FrontOfficeAPI",
   "port": 8081,
   "endpoints": [
     {
@@ -31,14 +30,11 @@
           "disable_host_sanitize": true,
           "extra_config": {
             "backend/pubsub/publisher": {
-              "topic_url": "projects/ada2022-341617/topics/order_req"
+              "topic_url": "empty/test"
             }
           }
         }
       ]
-
     }
-
   ]
-
 }
