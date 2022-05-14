@@ -4,7 +4,7 @@ services:
     image: devopsfaith/krakend:2.0.0
     container_name: api_gatway
     volumes:
-      - ./../apigateway_frontoffice:/etc/krakend/
+      - ./../apigateway_frontoffice/krakend:/etc/krakend/
     depends_on:
       - payment_service
     ports:
