@@ -2,7 +2,7 @@ version: '3.9'
 services:
   api_gatway:
     image: devopsfaith/krakend:2.0.0
-    container_name: api_gatway
+    container_name: api_gatway_ct
     volumes:
       - ./../apigateway_frontoffice/krakend:/etc/krakend/
     depends_on:
@@ -12,7 +12,7 @@ services:
   payment_service:
     build:
       context: ./../paymentservice
-    container_name: payment_service
+    container_name: payment_service_ct
     ports:
       - "5000:5000"
 
