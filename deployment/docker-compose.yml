@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  api_gatway:
+    image: devopsfaith/krakend:2.0.0
+    container_name: api_gatway
+    volumes:
+      - ./../apigateway_frontoffice:/etc/krakend/
+    depends_on:
+      - payment_service
+    ports:
+      - "8080:8081"
+  payment_service:
+    build:
+      context: ./../paymentservice
+    container_name: inventory_service_ct
+    ports:
+      - "5000:5000"
+
