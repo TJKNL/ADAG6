@@ -24,4 +24,4 @@ def update_order_status():
     return Order.update_status(req_data)
 
 
-app.run(host='0.0.0.0', port=5003)
+app.run(host='0.0.0.0', port=5000)
