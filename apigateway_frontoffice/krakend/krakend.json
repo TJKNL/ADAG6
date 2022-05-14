@@ -22,17 +22,6 @@
             "http://order_record_service_ct:5000/"
           ],
           "disable_host_sanitize": false
-        },
-        {
-          "host": [
-            "gcppubsub://"
-          ],
-          "disable_host_sanitize": true,
-          "extra_config": {
-            "backend/pubsub/publisher": {
-              "topic_url": "empty/test"
-            }
-          }
         }
       ]
     }
