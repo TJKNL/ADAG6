@@ -1,8 +1,8 @@
 version: '3.9'
 services:
-  api_gatway:
+  api_gateway:
     image: devopsfaith/krakend:2.0.0
-    container_name: api_gatway_ct
+    container_name: api_gateway_ct
     volumes:
       - ./../apigateway_frontoffice/krakend:/etc/krakend/
     depends_on:
