@@ -47,7 +47,7 @@ def get_menu():
 
 
 @app.route('/inventory/<d_id>/<order_quantity>', methods=['PUT'])
-def reduce(d_id=0, order_quantity=0):
+def reduce(d_id, order_quantity):
     return Inventory.reduce(d_id, order_quantity)
 
 
