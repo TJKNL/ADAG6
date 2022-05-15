@@ -14,7 +14,7 @@ project_id = os.environ['project_id']
 MessagePuller(project=project_id, subscription="new_order-sub", orders=order)
 
 # subscription to fulfilled_orders
-MessagePuller2(project=project_id, subscription="fulfilled_orders_sub", orders=order)
+MessagePuller2(project=project_id, subscription="fulfilled_orders-sub", orders=order)
 
 
 
