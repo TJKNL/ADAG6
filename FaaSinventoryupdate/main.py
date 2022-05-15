@@ -1,33 +1,16 @@
-from db import Base, engine
-from resources.order import Order
+import logging
+import os
 
-def create_order(request):
-    from flask import abort
-    if request.method == 'POST':
-        Base.metadata.create_all(engine)
-        request_json = request.get_json(silent=True)
-        return Order.create(request_json)
-    else:
-        return abort(405)
+from message_puller import MessagePuller
+from pub_sub_util import create_topic, create_subscription
+from resources.order import Order, Orders
 
-
-def get_unfulfilled_orders(request):
-    from flask import abort
-    if request.method == 'GET':
-        Base.metadata.create_all(engine)
-        return Order.get_unfulfilled()
-    else:
-        return abort(405)
-
-
-def update_order_status(request):
-    from flask import abort
-    if request.method == 'PUT':
-        Base.metadata.create_all(engine)
-        request_json = request.get_json(silent=True)
-        return Order.update_status(request_json)
-    else:
-        return abort(405)
-
-
-
+logging.basicConfig(level=logging.INFO)
+orders = Orders()
+order = Order()
+project_id = os.environ['project_id']
+create_topic(project=project_id, topic="inventory_status")
+create_subscription(project=project_id, topic="inventory_status",
+                    subscription="inventory_status_orderrecord_sub")
+create_topic(project=project_id, topic="order_status")
+MessagePuller(project=project_id, subscription="inventory_status_orderrecord_sub", orders=orders)
