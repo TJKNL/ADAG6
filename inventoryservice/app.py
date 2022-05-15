@@ -26,7 +26,7 @@ def get_inventory(d_id):
     return Inventory.get(d_id)
 
 
-@app.route('/inventory/menu/', methods=['GET'])
+@app.route('/inventory/menu', methods=['GET'])
 def get_nonzero():
     return Inventory.get_nonzero()
 
@@ -40,10 +40,10 @@ def delete_inventory_item(d_id):
 def delete_products_item(d_id):
     return Products.delete(d_id)
 
-
+"""
 @app.route('/inventory/menu', methods=['GET'])
 def get_menu():
-    return Inventory.get_nonzero()
+    return Inventory.get_nonzero()"""
 
 
 @app.route('/inventory/<d_id>/<order_quantity>', methods=['PUT'])
