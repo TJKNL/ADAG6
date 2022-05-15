@@ -60,6 +60,25 @@
           "disable_host_sanitize": false
         }
       ]
+    },
+    {
+      "endpoint": "/Fulfilled_order/{d_id}",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [
+            "gcppubsub://"
+          ],
+          "disable_host_sanitize": true,
+          "extra_config": {
+            "backend/pubsub/publisher": {
+              "topic_url": "projects/group-6-344214/topics/fulfilled_orders"
+            }
+          }
+        }
+      ]
+
     }
   ]
 }
