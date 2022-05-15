@@ -1,6 +1,6 @@
 from flask import Flask
 
-from inventoryservice.db import Base, engine
+from inventorydirectservice.db import Base, engine
 
 import json
 

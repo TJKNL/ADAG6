@@ -18,8 +18,9 @@ services:
       - "5000:5000"
   inventory_service:
     build:
-      context: ./../inventoryservice
+      context: ../inventorydirectservice
     container_name: inventory_service_ct
     ports:
       - "5001:5000"
-
+    volumes:
+      - "./../dbase:/usr/src/myapp/dbase"
