@@ -1,5 +1,4 @@
 {
-  "$schema": "http://www.krakend.io/schema/v3.json",
   "version": 3,
   "extra_config": {
     "telemetry/logging": {
@@ -34,14 +33,15 @@
           "disable_host_sanitize": false
         },
         {
-          "url_pattern": "/inventory/menu",
-          "encoding": "json",
-          "method": "GET",
           "host": [
-            "http://inventory_service_ct:5000/"
+            "gcppubsub://"
           ],
-          "disable_host_sanitize": false
-        }
+          "disable_host_sanitize": true,
+          "extra_config": {
+            "backend/pubsub/publisher": {
+              "topic_url": "projects/group-6-344214/topics/new_order"
+            }
+          }
       ]
     },
     {
