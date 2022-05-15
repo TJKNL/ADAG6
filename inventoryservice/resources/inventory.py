@@ -2,7 +2,7 @@ from flask import jsonify
 
 from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
-from inventoryservice.db import Session
+from db import Session
 
 
 class Inventory:
