@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
-
+# These functions are either used by a direct REST request or serve as maintenance functions for the DEV team.
 @app.route('/products', methods=['POST'])
 def create_product():
     req_data = request.get_json()
@@ -52,4 +52,3 @@ def reduce(d_id, order_quantity):
 
 
 app.run(host='0.0.0.0', port=5000)
-

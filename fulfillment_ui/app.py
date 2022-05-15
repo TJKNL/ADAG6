@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
-from inventoryservice.db import Base, engine
+from inventorydirectservice.db import Base, engine
 
 app = Flask(__name__)
 app.config["DEBUG"] = True

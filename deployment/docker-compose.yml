@@ -7,7 +7,8 @@ services:
       - ./../apigateway_frontoffice/krakend:/etc/krakend/
     depends_on:
       - payment_service
-      - inventory_service
+      - inventory_direct_service
+      - inventory_pubsub_service
     ports:
       - "8080:8081"
   payment_service:
@@ -16,10 +17,19 @@ services:
     container_name: payment_service_ct
     ports:
       - "5000:5000"
-  inventory_service:
+  inventory_direct_service:
     build:
-      context: ./../inventoryservice
-    container_name: inventory_service_ct
+      context: ../inventorydirectservice
+    container_name: inventory_direct_service_ct
     ports:
       - "5001:5000"
-
+    volumes:
+      - "./../dbase:/usr/src/myapp/dbase"
+  inventory_pubsub_service:
+    build:
+      context: ../inventorypubsubservice
+    container_name: inventory_pubsub_service_ct
+    ports:
+      - "5002:5000"
+    volumes:
+      - "./../dbase:/usr/src/myapp/dbase"
