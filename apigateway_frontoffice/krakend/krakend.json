@@ -36,7 +36,7 @@
         {
           "url_pattern": "/inventory/menu",
           "encoding": "json",
-          "method": "PUT",
+          "method": "GET",
           "host": [
             "http://inventory_service_ct:5000/"
           ],
