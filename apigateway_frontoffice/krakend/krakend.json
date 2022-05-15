@@ -62,7 +62,7 @@
       ]
     },
     {
-      "endpoint": "/Fulfilled_order/{d_id}",
+      "endpoint": "/fulfilled_order/{d_id}",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
