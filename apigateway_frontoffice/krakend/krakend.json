@@ -55,7 +55,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://inventory_service_ct:5000/"
+            "http://inventory_direct_service_ct:5000/"
           ],
           "disable_host_sanitize": false
         }
