@@ -38,7 +38,7 @@
           "encoding": "json",
           "method": "PUT",
           "host": [
-            "http://inventory_service_ct:5000/"
+            "http://inventory_service_ct:5001/"
           ],
           "disable_host_sanitize": false
         }
