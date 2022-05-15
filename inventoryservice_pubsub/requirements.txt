@@ -1,6 +1,4 @@
 flask
-pandas
-numpy
-sqlalchemy
-sqlalchemy-utils
-sqlalchemy-bigquery
+google-cloud-pubsub
+
+# Van Indika

@@ -3,7 +3,6 @@ from flask import jsonify
 from daos.products_dao import ProductsDAO
 from db import Session
 
-
 class Products:
     @staticmethod
     def create(body):

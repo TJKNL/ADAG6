@@ -4,7 +4,7 @@ from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
 from db import Session
 
-
+# Overbodig als pubsub wordt gebruikt?
 class Inventory:
     @staticmethod
     def create(body):
