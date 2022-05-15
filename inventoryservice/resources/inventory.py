@@ -68,7 +68,7 @@ class Inventory:
             return jsonify(menu), 200
         else:
             session.close()
-            return jsonify({'message': f'There are no items in inventory'}), 500
+            return jsonify({'message': f'There are no items in inventory'}), 200
 
     @staticmethod
     def delete(d_id):
