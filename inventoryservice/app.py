@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
-
+test
 @app.route('/products', methods=['POST'])
 def create_product():
     req_data = request.get_json()
