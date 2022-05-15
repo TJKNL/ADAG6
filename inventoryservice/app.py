@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from inventoryservice.db import Base, engine
+from db import Base, engine
 from resources.products import Products
 from resources.inventory import Inventory
 
