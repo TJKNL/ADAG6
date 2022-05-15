@@ -23,7 +23,7 @@ services:
     ports:
       - "5001:5000"
     volumes:
-      - "./../dbase:/usr/src/myapp/dbase"
+      - "./../dbase:/usr/src/myapp"
   inventory_pubsub_service:
     build:
       context: ../inventorypubsubservice
@@ -31,4 +31,4 @@ services:
     ports:
       - "5002:5000"
     volumes:
-      - "./../dbase:/usr/src/myapp/dbase"
+      - "./../dbase:/usr/src/myapp"
