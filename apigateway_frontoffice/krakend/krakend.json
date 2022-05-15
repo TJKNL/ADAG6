@@ -15,7 +15,7 @@
   "port": 8081,
   "endpoints": [
     {
-      "endpoint": "/NewOrder/{order}/{amount}",
+      "endpoint": "/NewOrder/{product_id}/{amount}/{order_quantity}",
       "method": "GET",
       "extra_config": {
         "proxy": {
@@ -29,7 +29,16 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://payment_service:5000/"
+            "http://payment_service_ct:5000/"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/inventory/{product_id}/{order_quantity}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://inventory_service_ct:5000/"
           ],
           "disable_host_sanitize": false
         }
