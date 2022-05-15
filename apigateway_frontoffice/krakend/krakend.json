@@ -14,7 +14,7 @@
   "port": 8081,
   "endpoints": [
     {
-      "endpoint": "/NewOrder/{d_id}/{amount}/{order_quantity}",
+      "endpoint": "/NewOrder/{amount}",
       "method": "GET",
       "extra_config": {
         "proxy": {
@@ -42,7 +42,7 @@
               "topic_url": "projects/ada2022-341617/topics/order_req"
             }
           }
-        }  
+        }
       ]
     },
     {
