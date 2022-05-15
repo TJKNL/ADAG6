@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Float
 
-from inventoryservice.db import Base
+from db import Base
 
 
 class ProductsDAO(Base):
