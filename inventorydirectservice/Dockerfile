@@ -11,6 +11,6 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Enviroment VariablesD
-ENV DB_URL  sqlite:///place.db
+ENV DB_URL  sqlite:///dbase/place.db
 # Run our App
 CMD ["python3","app.py"]
