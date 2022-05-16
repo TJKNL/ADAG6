@@ -10,7 +10,9 @@ from pub_sub_util import publish_message
 
 
 def pull_message(project, subscription, order):
+    print("hoedan")
     subscriber = pubsub_v1.SubscriberClient()
+    print("hoedan")
     subscription_path = subscriber.subscription_path(project, subscription)
 
     def callback(message):
