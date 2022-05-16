@@ -17,14 +17,18 @@ subscription_id = "new_order-sub"
 #MessagePuller(project=project_id, subscription=subscription_id, orders=order)
 
 
+
 "DE LOOP HIERONDER WERKT EN KUN JE TESTEN"
 while True:
     try:
-        pull_message(project_id, subscription_id, order)
+        pull_message(project_id, subscription_id, order)      
         time.sleep(30)
     except Exception as ex:
         logging.info(f"Listening for messages on {subscription_id} threw an exception: {ex}.")
         time.sleep(30)
+
+
+
 
 
 

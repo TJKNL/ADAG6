@@ -7,11 +7,12 @@ import pdb
 from google.cloud import pubsub_v1
 
 from pub_sub_util import publish_message
-
+import sys
 
 def pull_message(project, subscription, order):
-
+    print("Test2")
     subscriber = pubsub_v1.SubscriberClient()
+
     subscription_path = subscriber.subscription_path(project, subscription)
 
     def callback(message):
@@ -55,11 +56,12 @@ class MessagePuller(Thread):
     def run(self):
         while True:
             try:
+                print("Test1")
                 pull_message(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
-            except Exception as ex:
-                logging.info(f"Listening for messages on {self.subscription_id} threw an exception: {ex}.")
-                time.sleep(30)
+            except:
+                print("Error:", sys.exc_info()[0])
+
 
 
 """def pull_message2(project, subscription, order):
