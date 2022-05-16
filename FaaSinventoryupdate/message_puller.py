@@ -8,7 +8,9 @@ from google.cloud import pubsub_v1
 
 from pub_sub_util import publish_message
 
+def pull_message3(project, subscription, order):
 
+    x = 1
 def pull_message(project, subscription, order):
 
     subscriber = pubsub_v1.SubscriberClient()
@@ -55,7 +57,7 @@ class MessagePuller(Thread):
     def run(self):
         while True:
             try:
-                pull_message(self.project_id, self.subscription_id, self.orders)
+                pull_message3(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
             except Exception as ex:
                 logging.info(f"Listening for messages on {self.subscription_id} threw an exception: {ex}.")
@@ -95,7 +97,7 @@ def pull_message2(project, subscription, order):
             logging.info("Streaming pull future canceled.")
 
 
-class MessagePuller2(Thread):
+"""class MessagePuller2(Thread):
     def __init__(self, project, subscription, orders):
         Thread.__init__(self)
         self.project_id = project
@@ -114,3 +116,4 @@ class MessagePuller2(Thread):
             except Exception as ex:
                 logging.info(f"Listening for messages on {self.subscription_id} threw an exception: {ex}.")
                 time.sleep(30)
+"""
