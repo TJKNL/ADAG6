@@ -10,9 +10,8 @@ from pub_sub_util import publish_message
 
 
 def pull_message(project, subscription, order):
-    print("hoedan")
+
     subscriber = pubsub_v1.SubscriberClient()
-    print("hoedan")
     subscription_path = subscriber.subscription_path(project, subscription)
 
     def callback(message):
@@ -24,8 +23,7 @@ def pull_message(project, subscription, order):
         logging.info("The new_order is received")
         order.create_order(data)
         unfulfilled_orders = order.get_unfulfilled()
-        publish_message(project=project, topic="unfulfilled_orders", message=unfulfilled_orders,
-                        event_type="NewOrderAdded")
+        publish_message(project=project, topic="unfulfilled_orders", message=unfulfilled_orders, event_type="NewOrderAdded")
         message.ack()
 
     streaming_pull_future = subscriber.subscribe(
