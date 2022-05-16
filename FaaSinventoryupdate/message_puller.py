@@ -55,7 +55,7 @@ class MessagePuller(Thread):
         self.start()
 
     def run(self):
-        for i in range(10)
+        for i in range(10):
             try:
                 pull_message3(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
