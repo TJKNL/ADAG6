@@ -8,8 +8,6 @@ from google.cloud import pubsub_v1
 
 from pub_sub_util import publish_message
 
-def pull_message3(project, subscription, order):
-    print("HOEDAN")
 
 def pull_message(project, subscription, order):
 
@@ -23,7 +21,7 @@ def pull_message(project, subscription, order):
         data = json.loads(message.data.decode("utf-8"))
 
         logging.info("The new_order is received")
-        order.create_order(data)
+        order.create(data)
         unfulfilled_orders = order.get_unfulfilled()
         publish_message(project=project, topic="unfulfilled_orders", message=unfulfilled_orders, event_type="NewOrderAdded")
         message.ack()
@@ -55,7 +53,7 @@ class MessagePuller(Thread):
         self.start()
 
     def run(self):
-        for i in range(10):
+        while True:
             try:
                 pull_message3(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
