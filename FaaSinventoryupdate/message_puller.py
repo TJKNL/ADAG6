@@ -55,14 +55,14 @@ class MessagePuller(Thread):
     def run(self):
         while True:
             try:
-                pull_message3(self.project_id, self.subscription_id, self.orders)
+                pull_message(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
             except Exception as ex:
                 logging.info(f"Listening for messages on {self.subscription_id} threw an exception: {ex}.")
                 time.sleep(30)
 
 
-def pull_message2(project, subscription, order):
+"""def pull_message2(project, subscription, order):
     subscriber = pubsub_v1.SubscriberClient()
     subscription_path = subscriber.subscription_path(project, subscription)
 
@@ -92,7 +92,7 @@ def pull_message2(project, subscription, order):
             streaming_pull_future.result(timeout=60)
         except TimeoutError:
             streaming_pull_future.cancel()
-            logging.info("Streaming pull future canceled.")
+            logging.info("Streaming pull future canceled.")"""
 
 
 """class MessagePuller2(Thread):
