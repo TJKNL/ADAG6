@@ -2,6 +2,7 @@ import json
 import logging
 import time
 from threading import Thread
+import pdb
 
 from google.cloud import pubsub_v1
 
@@ -13,6 +14,7 @@ def pull_message(project, subscription, order):
     subscription_path = subscriber.subscription_path(project, subscription)
 
     def callback(message):
+
         logging.info(f"Received {message.data}.")
         # event_type = message.attributes.get("event_type")   # event type as a message attribute
         data = json.loads(message.data.decode("utf-8"))
@@ -37,6 +39,7 @@ def pull_message(project, subscription, order):
             streaming_pull_future.result(timeout=60)
         except TimeoutError:
             streaming_pull_future.cancel()
+
             logging.info("Streaming pull future canceled.")
 
 
@@ -64,6 +67,7 @@ def pull_message2(project, subscription, order):
     subscription_path = subscriber.subscription_path(project, subscription)
 
     def callback2(message):
+
         logging.info(f"Received {message.data}.")
         # event_type = message.attributes.get("event_type")   # event type as a message attribute
         data = json.loads(message.data.decode("utf-8"))
@@ -101,9 +105,11 @@ class MessagePuller2(Thread):
         self.start()
 
     def run(self):
+
         while True:
+
             try:
-                pull_message(self.project_id, self.subscription_id, self.orders)
+                pull_message2(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
             except Exception as ex:
                 logging.info(f"Listening for messages on {self.subscription_id} threw an exception: {ex}.")
