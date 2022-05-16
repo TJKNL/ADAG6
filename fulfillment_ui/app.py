@@ -10,3 +10,6 @@ Base.metadata.create_all(engine)
 @app.route('/fulfillment_ui', methods=['GET', 'POST'])
 def index():
     return FulfillmentForm.index()
+
+app.run(host='0.0.0.0', port=5000)
+
