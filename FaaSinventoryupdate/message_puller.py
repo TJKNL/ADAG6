@@ -9,8 +9,8 @@ from google.cloud import pubsub_v1
 from pub_sub_util import publish_message
 
 def pull_message3(project, subscription, order):
+    print("HOEDAN")
 
-    x = 1
 def pull_message(project, subscription, order):
 
     subscriber = pubsub_v1.SubscriberClient()
@@ -55,7 +55,7 @@ class MessagePuller(Thread):
         self.start()
 
     def run(self):
-        while True:
+        for i in range(10)
             try:
                 pull_message3(self.project_id, self.subscription_id, self.orders)
                 time.sleep(30)
