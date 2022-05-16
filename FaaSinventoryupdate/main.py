@@ -1,7 +1,7 @@
 import logging
 import os
 
-from message_puller import MessagePuller, MessagePuller2
+from message_puller import MessagePuller
 from pub_sub_util import publish_message
 from resources.order import Order
 
