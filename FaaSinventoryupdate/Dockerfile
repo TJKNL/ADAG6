@@ -17,4 +17,4 @@ EXPOSE 5000
 ENV DB_URL  sqlite:///delivery.db
 ENV project_id group-6-34421
 # Run our App
-CMD ["python3","app.py"]
+CMD ["python3","main.py"]

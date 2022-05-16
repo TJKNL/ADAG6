@@ -22,4 +22,10 @@ services:
     container_name: inventory_service_ct
     ports:
       - "5001:5000"
+  order_service:
+    build:
+      context: ./../FaaSinventorypdate
+    container_name: order_service_ct
+    ports:
+      - "5002:5000"
 
