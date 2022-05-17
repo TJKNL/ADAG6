@@ -16,8 +16,8 @@ class Callable:
     def callback(self, message):
         logging.info(f"Received {message.data}.")
         data = json.loads(message.data.decode("utf-8"))
-        logging.info('Data:', message.data.decode("utf-8"))
-        self.inventory.reduce_inventory(order=data)
+        logging.info('Data:',message.data.decode("utf-8"))
+        self.inventory.reduce_inventory(order=message.data.decode("utf-8"))
         message.ack()
 
 
@@ -47,7 +47,7 @@ class MessagePuller(Thread):
         Thread.__init__(self)
         self.project_id = project
         self.subscription_id = subscription
-        #self.daemon = True
+        # self.daemon = True
         self.inventory = inventory
         self.start()
 
