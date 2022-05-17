@@ -6,7 +6,7 @@ from db import Session
 
 
 class Inventory:
-    def create(body):
+    def create(self, body):
         session = Session()
         inventory_item = InventoryDAO(body['product_id'], body['product_quantity'], body['product_price'])
 
@@ -20,7 +20,7 @@ class Inventory:
             session.close()
             return "Error: Most likely inventory item already exists", 500
 
-    def get(d_id):
+    def get(self, d_id):
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
@@ -41,7 +41,7 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
 
-    def get_nonzero():
+    def get_nonzero(self):
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
@@ -67,7 +67,7 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There are no items in inventory'}), 200
 
-    def delete(d_id):
+    def delete(self, d_id):
         session = Session()
         effected_rows = session.query(InventoryDAO).filter(InventoryDAO.id == d_id).delete()
         session.commit()
@@ -77,7 +77,7 @@ class Inventory:
         else:
             return jsonify({'message': 'The item was removed from inventory'}), 200
 
-    def reduce_inventory(order):
+    def reduce_inventory(self, order):
         session = Session()
         for orders in order["order_content"].items():
             d_id = int(orders[0])

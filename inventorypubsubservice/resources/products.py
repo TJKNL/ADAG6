@@ -5,7 +5,7 @@ from db import Session
 
 class Products:
 
-    def create(body):
+    def create(self, body):
         session = Session()
         product_item = ProductsDAO(body['product_name'], body['product_cost'])
 
@@ -21,7 +21,7 @@ class Products:
             return "Error: most likely Product already exists in Database", 500
 
 
-    def delete(d_id):
+    def delete(self, d_id):
         session = Session()
         effected_rows = session.query(ProductsDAO).filter(ProductsDAO.id == d_id).delete()
         session.commit()
