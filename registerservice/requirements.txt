@@ -5,3 +5,4 @@ numpy
 sqlalchemy
 sqlalchemy-utils
 sqlalchemy-bigquery
+Flask-Bootstrap
