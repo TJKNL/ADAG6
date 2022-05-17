@@ -13,7 +13,7 @@ class OrderForm(FlaskForm):
     # Class necessary for the fulfillment form (FlaskWTF).
     # Request products which are in stock.
     # TODO: replace url with actual menu service. Assignment 2
-    r = requests.get(url=' http://api_gateway_ct:8080/GetMenu')
+    r = requests.get(url=' http://api_gateway_ct:8081/GetMenu')
     menu = r.json()
     options = []
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
