@@ -81,3 +81,9 @@ class Inventory:
         else:
             return jsonify({'message': 'The item was removed from inventory'}), 200
 
+
+    @staticmethod
+    def reduce_inventory(body):
+        "Hier komt de funcite"
+
+        return "JOEPIE"

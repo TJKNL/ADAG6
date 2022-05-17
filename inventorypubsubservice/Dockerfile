@@ -1,7 +1,4 @@
 # Using python:3.7-slim-buster image
-
-# Dockerfile van Indika
-
 FROM python:3.7-slim-buster
 # Defining working directory and copy the requirements file
 WORKDIR /usr/src/myapp

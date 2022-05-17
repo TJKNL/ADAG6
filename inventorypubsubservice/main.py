@@ -10,4 +10,4 @@ logging.basicConfig(level=logging.INFO)
 inventory = Inventory()
 project_id = os.environ['project_id']
 
-MessagePuller(project=project_id, subscription="order_req_sub", inventory=inventory)
+MessagePuller(project=project_id, subscription="new_order-sub", inventory=inventory)
