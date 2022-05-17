@@ -28,7 +28,7 @@ services:
   inventory_pubsub_service:
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/opt/group-6-344214-ad49ed243a8c.json
-      - PUBSUB_PROJECT_ID=group-6-34421
+      - PUBSUB_PROJECT_ID=group-6-344214
     build:
       context: ../inventorypubsubservice
     container_name: inventory_pubsub_service_ct
