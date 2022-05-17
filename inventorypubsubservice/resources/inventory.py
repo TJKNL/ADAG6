@@ -83,9 +83,10 @@ class Inventory:
             d_id = int(orders[0])
             order_quantity = int(orders[1]["quantity"])
             effected_row = session.query(InventoryDAO).filter(InventoryDAO.product_id == d_id).first()
-            old_amount = effected_row.product_quantity
-            new_amount = old_amount - order_quantity
-            effected_row.product_quantity = new_amount
-            session.commit()
-            session.close()
+            if effected_row:
+                old_amount = effected_row.product_quantity
+                new_amount = old_amount - order_quantity
+                effected_row.product_quantity = new_amount
+                session.commit()
+                session.close()
         return jsonify({'message': 'The quantity was reduced from inventory'}), 200
