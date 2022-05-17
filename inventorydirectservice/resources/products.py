@@ -25,6 +25,7 @@ class Products:
         else:
             session.close()
             return jsonify({'message': "There are no products in db"}), 404
+
     @staticmethod
     def create(body):
         session = Session()
