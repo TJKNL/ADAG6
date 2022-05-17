@@ -11,11 +11,13 @@ class Products:
         products = session.query(ProductsDAO)
 
         if products:
-            text_out = {
-                "product_name": products.product_name,
-                "product_id:": products.product_id,
-                "product_cost": products.product_cost,
-            }
+            for product in products:
+
+                text_out = {
+                    "product_name": product.product_name,
+                    "product_id:": product.product_id,
+                    "product_cost": product.product_cost,
+                }
             session.close()
             return jsonify(text_out), 200
         else:
