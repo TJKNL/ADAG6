@@ -18,6 +18,7 @@ class OrderForm(FlaskForm):
     options = []
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
     for key in menu.keys():
+        print(menu)
         item = menu[key]
         print(item)
         options.append((key, f"{item['product_name']}: €{item['product_price']}"))
