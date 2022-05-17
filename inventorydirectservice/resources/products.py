@@ -8,9 +8,10 @@ class Products:
     @staticmethod
     def get():
         session = Session()
-        products = session.query(ProductsDAO)
+        products = session.query(ProductsDAO).all()
 
         if products:
+            products_dict = {}
             for product in products:
 
                 text_out = {
@@ -18,8 +19,9 @@ class Products:
                     "product_id:": product.product_id,
                     "product_cost": product.product_cost,
                 }
+                products_dict[product.product_name] = text_out
             session.close()
-            return jsonify(text_out), 200
+            return jsonify(products_dict), 200
         else:
             session.close()
             return jsonify({'message': "There are no products in db"}), 404
