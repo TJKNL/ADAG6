@@ -26,6 +26,8 @@ services:
     volumes:
       - "./../dbase:/usr/src/myapp/dbase"
   inventory_pubsub_service:
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/group-6-344214-ad49ed243a8c.json
     build:
       context: ../inventorypubsubservice
     container_name: inventory_pubsub_service_ct
