@@ -26,6 +26,8 @@ def get_unfulfilled():
     forms = []
     info = []
     # For order in ...
+    print("unfulfilled output test:")
+    print(unfulfilled)
     for key in unfulfilled.keys():
 
         order_id = key
@@ -34,6 +36,7 @@ def get_unfulfilled():
         forms.append(form)
 
         products = []
+        print(key)
         for key2 in unfulfilled[key]["order_content"].keys():
             product = unfulfilled[key]["order_content"][key2]
             product_name = product["product_name"]
