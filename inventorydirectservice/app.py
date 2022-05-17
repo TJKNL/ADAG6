@@ -10,10 +10,19 @@ Base.metadata.create_all(engine)
 
 
 # These functions are either used by a direct REST request or serve as maintenance functions for the DEV team.
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    return Products.get()
+
 @app.route('/products', methods=['POST'])
 def create_product():
     req_data = request.get_json()
     return Products.create(req_data)
+
+@app.route('/products/<d_id>', methods=['DELETE'])
+def delete_products_item(d_id):
+    return Products.delete(d_id)
 
 
 @app.route('/inventory', methods=['POST'])
@@ -36,10 +45,6 @@ def get_nonzero():
 def delete_inventory_item(d_id):
     return Inventory.delete(d_id)
 
-
-@app.route('/products/<d_id>', methods=['DELETE'])
-def delete_products_item(d_id):
-    return Products.delete(d_id)
 
 
 @app.route('/inventory/NewOrder', methods=['PUT'])
