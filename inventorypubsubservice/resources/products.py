@@ -1,4 +1,4 @@
-from flask import jsonify
+import json
 
 from daos.products_dao import ProductsDAO
 from db import Session
@@ -14,7 +14,7 @@ class Products:
             session.commit()
             session.refresh(product_item)
             session.close()
-            return jsonify({'product_id': product_item.id}), 200
+            return json.dumps({'product_id': product_item.id}), 200
         except:
 
             session.close()
@@ -27,6 +27,6 @@ class Products:
         session.commit()
         session.close()
         if effected_rows == 0:
-            return jsonify({'message': f'There is no item in products with id {d_id}'}), 404
+            return json.dumps({'message': f'There is no item in products with id {d_id}'}), 404
         else:
-            return jsonify({'message': 'The item was removed from products'}), 200
+            return json.dumps({'message': 'The item was removed from products'}), 200

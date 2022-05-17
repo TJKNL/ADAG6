@@ -1,4 +1,4 @@
-from flask import jsonify
+import json
 
 from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
@@ -15,7 +15,7 @@ class Inventory:
             session.commit()
             session.refresh(inventory_item)
             session.close()
-            return jsonify({'inventory_id': inventory_item.id}), 200
+            return json.dumps({'inventory_id': inventory_item.id}), 200
         except:
             session.close()
             return "Error: Most likely inventory item already exists", 500
@@ -36,10 +36,10 @@ class Inventory:
                 "product_quantity": inventory_item.product_quantity
             }
             session.close()
-            return jsonify(text_out), 200
+            return json.dumps(text_out), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
+            return json.dumps({'message': f'There is no item in inventory with id {d_id}'}), 404
 
     def get_nonzero(self):
         session = Session()
@@ -62,10 +62,10 @@ class Inventory:
 
             menu["menu"] = product_list
             session.close()
-            return jsonify(menu), 200
+            return json.dumps(menu), 200
         else:
             session.close()
-            return jsonify({'message': f'There are no items in inventory'}), 200
+            return json.dumps({'message': f'There are no items in inventory'}), 200
 
     def delete(self, d_id):
         session = Session()
@@ -73,9 +73,9 @@ class Inventory:
         session.commit()
         session.close()
         if effected_rows == 0:
-            return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
+            return json.dumps({'message': f'There is no item in inventory with id {d_id}'}), 404
         else:
-            return jsonify({'message': 'The item was removed from inventory'}), 200
+            return json.dumps({'message': 'The item was removed from inventory'}), 200
 
     def reduce_inventory(self, order):
         session = Session()
@@ -89,4 +89,4 @@ class Inventory:
                 effected_row.product_quantity = new_amount
                 session.commit()
                 session.close()
-        return jsonify(order), 201
+        return json.dumps(order), 201
