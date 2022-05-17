@@ -61,6 +61,6 @@ def proces_order(form, menu):
         "order_content": order_content
     }
 
-    requests.post(url=f"http://api_gateway_ct:8080/NewOrder/{revenue}", json=json.dumps(order))
+    requests.post(url=f"http://api_gateway_ct:8081/NewOrder/{revenue}", json=json.dumps(order))
     print(order)  # Print order for demo purposes.
     return message
