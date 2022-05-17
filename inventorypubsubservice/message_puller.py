@@ -16,7 +16,7 @@ class Callable:
     def callback(self, message):
         logging.info(f"Received {message.data}.")
         data = json.loads(message.data.decode("utf-8"))
-        logging.info('Data:', data)
+        logging.info('Data:', message.data.decode("utf-8"))
         self.inventory.reduce_inventory(order=data)
         message.ack()
 
