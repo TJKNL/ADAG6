@@ -35,3 +35,4 @@ services:
       - "5002:5000"
     volumes:
       - "./../dbase:/usr/src/myapp/dbase"
+      - ./group-6-344214-ad49ed243a8c.json:/opt/group-6-344214-ad49ed243a8c.json
