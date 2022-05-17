@@ -96,18 +96,4 @@ class Inventory:
         return jsonify({'message': 'The quantity was reduced from inventory'}), 200
 
 
-"""{
-		 "order_info": {
-			 "revenue": 4.5 
-		 },
-		 "order_content": {
-			 "3": {
-				 "product_name": "Heiniken", 
-				 "product_price": 1.5, 
-				 "quantity": 10},
-			 "6": {
-				 "product_name": "Jup", 
-				 "product_price": 2.5, 
-				 "quantity": 50}
-		 }
-}"""
+
