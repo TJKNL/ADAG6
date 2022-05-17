@@ -4,9 +4,8 @@ from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
 from db import Session
 
-# Overbodig als pubsub wordt gebruikt?
+
 class Inventory:
-    @staticmethod
     def create(body):
         session = Session()
         inventory_item = InventoryDAO(body['product_id'], body['product_quantity'], body['product_price'])
@@ -21,7 +20,6 @@ class Inventory:
             session.close()
             return "Error: Most likely inventory item already exists", 500
 
-    @staticmethod
     def get(d_id):
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
@@ -43,7 +41,7 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
 
-    @staticmethod
+
     def get_nonzero():
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
@@ -70,7 +68,7 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There are no items in inventory'}), 200
 
-    @staticmethod
+
     def delete(d_id):
         session = Session()
         effected_rows = session.query(InventoryDAO).filter(InventoryDAO.id == d_id).delete()
@@ -81,7 +79,6 @@ class Inventory:
         else:
             return jsonify({'message': 'The item was removed from inventory'}), 200
 
-    @staticmethod
     def reduce_inventory(order):
         session = Session()
         for orders in order["order_content"].items():

@@ -4,7 +4,7 @@ from daos.products_dao import ProductsDAO
 from db import Session
 
 class Products:
-    @staticmethod
+
     def create(body):
         session = Session()
         product_item = ProductsDAO(body['product_name'], body['product_cost'])
@@ -20,7 +20,7 @@ class Products:
             session.close()
             return "Error: most likely Product already exists in Database", 500
 
-    @staticmethod
+
     def delete(d_id):
         session = Session()
         effected_rows = session.query(ProductsDAO).filter(ProductsDAO.id == d_id).delete()
