@@ -81,3 +81,17 @@ class Inventory:
         else:
             return jsonify({'message': 'The item was removed from inventory'}), 200
 
+
+    @staticmethod
+    def reduce_inventory(order):
+        session = Session()
+        for orders in order["order_content"].items():
+            d_id = int(orders[0])
+            order_quantity = int(orders[1]["quantity"])
+            effected_row = session.query(InventoryDAO).filter(InventoryDAO.product_id == d_id).first()
+            old_amount = effected_row.product_quantity
+            new_amount = old_amount - order_quantity
+            effected_row.product_quantity = new_amount
+            session.commit()
+            session.close()
+        return jsonify({'message': 'The quantity was reduced from inventory'}), 200

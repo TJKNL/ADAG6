@@ -6,6 +6,27 @@ from db import Session
 
 class Products:
     @staticmethod
+    def get():
+        session = Session()
+        products = session.query(ProductsDAO).all()
+
+        if products:
+            products_dict = {}
+            for product in products:
+
+                text_out = {
+                    "product_name": product.product_name,
+                    "product_id:": product.product_id,
+                    "product_cost": product.product_cost,
+                }
+                products_dict[product.product_name] = text_out
+            session.close()
+            return jsonify(products_dict), 200
+        else:
+            session.close()
+            return jsonify({'message': "There are no products in db"}), 404
+
+    @staticmethod
     def create(body):
         session = Session()
         product_item = ProductsDAO(body['product_name'], body['product_cost'])
