@@ -19,6 +19,7 @@ class OrderForm(FlaskForm):
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
     for key in menu.keys():
         item = menu[key]
+        print(item)
         options.append((key, f"{item['product_name']}: €{item['product_price']}"))
     # TODO: Create multiple forms for multiple products per order.
     # SelectField is a dropdown with possible options.
