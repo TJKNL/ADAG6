@@ -37,12 +37,15 @@ def get_unfulfilled():
 
         products = []
         print(key)
-        for key2 in unfulfilled[key]["order_content"].keys():
-            product = unfulfilled[key]["order_content"][key2]
-            product_name = product["product_name"]
-            product_quantity = product["quantity"]
-            products.append(f"{product_name} x {product_quantity}")
-        info.append([f"ID: {key}", products])
+        try:
+            for key2 in unfulfilled[key]["order_content"].keys():
+                product = unfulfilled[key]["order_content"][key2]
+                product_name = product["product_name"]
+                product_quantity = product["quantity"]
+                products.append(f"{product_name} x {product_quantity}")
+            info.append([f"ID: {key}", products])
+        except Exception as ex:
+            print(ex)
         return info, message, forms
 
 
