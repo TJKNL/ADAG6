@@ -39,9 +39,13 @@ services:
     container_name: register_service_ct
     ports:
       - "5003:5000"
+    depends_on:
+      - api_gateway
   fulfillment_ui:
     build:
       context: ../fulfillment_ui
     container_name: fulfillment_ui_ct
     ports:
       - "5004:5000"
+    depends_on:
+      - api_gateway
