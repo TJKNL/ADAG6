@@ -41,7 +41,6 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There is no item in inventory with id {d_id}'}), 404
 
-
     def get_nonzero():
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
@@ -68,7 +67,6 @@ class Inventory:
             session.close()
             return jsonify({'message': f'There are no items in inventory'}), 200
 
-
     def delete(d_id):
         session = Session()
         effected_rows = session.query(InventoryDAO).filter(InventoryDAO.id == d_id).delete()
@@ -91,6 +89,3 @@ class Inventory:
             session.commit()
             session.close()
         return jsonify({'message': 'The quantity was reduced from inventory'}), 200
-
-
-

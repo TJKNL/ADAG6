@@ -17,7 +17,7 @@ class Callable:
         logging.info(f"Received {message.data}.")
         data = json.loads(message.data.decode("utf-8"))
         logging.info('Data:', data)
-        self.inventory.reduce_inventory(data)
+        self.inventory.reduce_inventory(order=data)
         message.ack()
 
 
