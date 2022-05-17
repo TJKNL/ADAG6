@@ -89,4 +89,4 @@ class Inventory:
                 effected_row.product_quantity = new_amount
                 session.commit()
                 session.close()
-        return jsonify({'message': 'The quantity was reduced from inventory'}), 200
+        return jsonify(order), 201
