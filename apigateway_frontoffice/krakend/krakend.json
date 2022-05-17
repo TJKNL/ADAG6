@@ -17,6 +17,10 @@
       "endpoint": "/NewOrder/{amount}",
       "method": "GET",
       "extra_config": {
+        "qos/ratelimit/router": {
+            "max_rate": 1,
+            "client_max_rate" : 1
+      },
         "proxy": {
           "sequential": true
         }
