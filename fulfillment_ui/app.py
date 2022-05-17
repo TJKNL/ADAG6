@@ -8,13 +8,11 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
-from inventorydirectservice.db import Base, engine
 
 from resources.ui import FulfillmentForm, get_unfulfilled, fulfill
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-Base.metadata.create_all(engine)
 
 # Initialize Flask Bootstrap for WTForm.
 bootstrap = Bootstrap(app)

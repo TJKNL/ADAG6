@@ -8,7 +8,6 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
-from inventorydirectservice.db import Base, engine
 
 
 class FulfillmentForm(FlaskForm):
