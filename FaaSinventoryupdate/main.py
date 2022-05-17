@@ -1,33 +1,19 @@
-from db import Base, engine
+import logging
+import os
+import time
+from message_puller import pull_message, MessagePuller
 from resources.order import Order
 
-def create_order(request):
-    from flask import abort
-    if request.method == 'POST':
-        Base.metadata.create_all(engine)
-        request_json = request.get_json(silent=True)
-        return Order.create(request_json)
-    else:
-        return abort(405)
+# basic setup
+logging.basicConfig(level=logging.INFO)
+order = Order()
+#project_id = os.environ['project_id']
 
+project_id = "group-6-344214"
 
-def get_unfulfilled_orders(request):
-    from flask import abort
-    if request.method == 'GET':
-        Base.metadata.create_all(engine)
-        return Order.get_unfulfilled()
-    else:
-        return abort(405)
+# subscription to new_orders
+MessagePuller(project=project_id, subscription= "new_order-sub", orders=order)
 
-
-def update_order_status(request):
-    from flask import abort
-    if request.method == 'PUT':
-        Base.metadata.create_all(engine)
-        request_json = request.get_json(silent=True)
-        return Order.update_status(request_json)
-    else:
-        return abort(405)
-
-
+# subscription to fulfilled_orders
+MessagePuller(project=project_id, subscription="fulfilled_orders-sub", orders=order)
 
