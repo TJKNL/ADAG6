@@ -32,7 +32,7 @@ class Inventory:
             product_object = inventory_item.product
             text_out = {
                 "product_name": product_object.product_name,
-                "product_id:": inventory_item.product_id,
+                "product_id": inventory_item.product_id,
                 "product_price": inventory_item.product_price,
                 "product_cost": product_object.product_cost,
                 "product_quantity": inventory_item.product_quantity
