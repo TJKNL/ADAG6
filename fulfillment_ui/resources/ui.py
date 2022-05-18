@@ -28,6 +28,7 @@ def get_unfulfilled():
     #logging.info(f"Hoi hoi hier is de request {r2}.")
     message = ""
     unfulfilled = r.json()
+    order_id = 0
     try:
         order_id = unfulfilled["order_id"]
         unfulfilled = unfulfilled['order_content']
