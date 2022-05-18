@@ -52,7 +52,6 @@ class Inventory:
 
         if inventory:
             menu = {}
-            product_list = []
             for p in inventory:
                 product_object = p.product  # link to product DB
                 text_out = {
@@ -61,7 +60,7 @@ class Inventory:
                     "product_count": p.product_quantity
                 }
                 menu[p.product_id] = text_out
-        
+
             session.close()
             return jsonify(menu), 200
         else:
