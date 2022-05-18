@@ -23,7 +23,7 @@ class FulfillmentForm(FlaskForm):
 
 def get_unfulfilled():
     r = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order')
-    logging.info(f"Hoi hoi hier is de request {r.get_json()}.")
+    logging.info(f"Hoi hoi hier is de request {r.data}.")
     r2 = json.loads(r.data.decode("utf-8"))
     logging.info(f"Hoi hoi hier is de request {r2}.")
     message = ""
