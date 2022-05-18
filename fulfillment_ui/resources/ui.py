@@ -40,13 +40,14 @@ def get_unfulfilled():
      'order_info': {'revenue': 4.5}}"""
 
     order_id = 10
-    form = FulfillmentForm(prefix=order_id)
+    form = FulfillmentForm()
     form.id.data = order_id
     forms.append(form)
+    products = []
     # For order in ...
     if not no_orders:
         for key in unfulfilled.keys():
-            products = []
+
             try:
                 product = unfulfilled[key]
                 product_name = product["product_name"]
