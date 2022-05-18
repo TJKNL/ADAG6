@@ -42,6 +42,7 @@ class OrderForm(FlaskForm):
 
 def proces_order(form, menu):
     order = {}
+    logging.info(menu)
     quantity = form.quantity.data
     logging.info(quantity)
     product_id = form.product.data
