@@ -64,7 +64,6 @@ def get_unfulfilled(r):
                 print(form.id.data, data)
                 message = f"Fulfillment processed for order: {order_id}"
                 requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id}))
-                return 200
     return info, message, forms
 
 
