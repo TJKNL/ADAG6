@@ -21,8 +21,7 @@ class FulfillmentForm(FlaskForm):
     submit_order = SubmitField('Fulfill order')
 
 
-def get_unfulfilled():
-    r = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order')
+def get_unfulfilled(r):
     logging.info(f"Hoi hoi hier is de request {r.json()}.")
     #r2 = json.loads(r.data.decode("utf-8"))
     #logging.info(f"Hoi hoi hier is de request {r2}.")

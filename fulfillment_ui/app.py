@@ -24,7 +24,8 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/fulfillment_ui', methods=['GET', 'POST'])
 def index():
-    info, message, forms = get_unfulfilled()
+    r = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order')
+    info, message, forms = get_unfulfilled(r)
 
     return render_template('index.html', message=message, forms=forms, info=info)
 
