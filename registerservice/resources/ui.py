@@ -42,7 +42,7 @@ class OrderForm(FlaskForm):
 def proces_order(form, menu):
     order = {}
 
-    order_quantity = form.quantity.data
+    order_quantity = form.order_quantity.data
     product_id = form.product.data
 
     # Check if requested order_quantity is within inventory limits.
