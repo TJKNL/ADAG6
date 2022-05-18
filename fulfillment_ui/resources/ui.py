@@ -2,12 +2,15 @@ import os
 import requests
 from datetime import datetime
 import json
+import logging
 
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
+
+logging.basicConfig(level=logging.INFO)
 
 
 class FulfillmentForm(FlaskForm):
@@ -20,7 +23,7 @@ class FulfillmentForm(FlaskForm):
 
 def get_unfulfilled():
     r = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order')
-
+    logging.info(f"Hoi hoi hier is de request {r}.")
     message = ""
     unfulfilled = r.json()
     forms = []

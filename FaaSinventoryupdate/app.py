@@ -1,12 +1,15 @@
 from flask import Flask, request
+import logging
 
 from db import Base, engine
 from resources.order import Order
 
+# basic setup
 app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
+logging.basicConfig(level=logging.INFO)
 
 @app.route('/order', methods=['POST'])
 def create_order():
