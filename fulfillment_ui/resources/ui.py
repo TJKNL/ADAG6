@@ -35,6 +35,10 @@ def get_unfulfilled():
         no_orders = True
     forms = []
     info = []
+    {'order_content': {'1': {'product_name': 'TEST', 'product_price': 1.5, 'quantity': 2},
+                       '2': {'product_name': 'Leffe Blond', 'product_price': 2.5, 'quantity': 2}},
+     'order_info': {'revenue': 4.5}}
+
     # For order in ...
     print("unfulfilled output test:")
     print(unfulfilled)
@@ -47,13 +51,11 @@ def get_unfulfilled():
             forms.append(form)
 
             products = []
-            print(key)
             try:
-                for key2 in unfulfilled[key]["order_content"].keys():
-                    product = unfulfilled[key]["order_content"][key2]
-                    product_name = product["product_name"]
-                    product_quantity = product["quantity"]
-                    products.append(f"{product_name} x {product_quantity}")
+                product = unfulfilled[key]
+                product_name = product["product_name"]
+                product_quantity = product["quantity"]
+                products.append(f"{product_name} x {product_quantity}")
                 info.append([f"ID: {key}", products])
             except Exception as ex:
                 print(ex)
