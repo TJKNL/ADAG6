@@ -51,19 +51,17 @@ class Inventory:
         inventory = session.query(InventoryDAO).filter(InventoryDAO.product_quantity > 0).all()
 
         if inventory:
-            menu = {"menu": []}
+            menu = {}
             product_list = []
             for p in inventory:
                 product_object = p.product  # link to product DB
                 text_out = {
-                    "product_id": p.product_id,
                     "product_name": product_object.product_name,
                     "product_price": p.product_price,
                     "product_count": p.product_quantity
                 }
-                product_list.append(text_out)
-
-            menu["menu"] = product_list
+                menu[p.product_id] = text_out
+        
             session.close()
             return jsonify(menu), 200
         else:
