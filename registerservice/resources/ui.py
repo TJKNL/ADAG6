@@ -26,8 +26,8 @@ class OrderForm(FlaskForm):
         # Inventory is empty.
         pass
     else:
-
-        for item in menu['menu']:
+        menu = menu['menu']
+        for item in menu:
             options.append((item['product_id'], f"{item['product_name']}: €{item['product_price']}"))
 
     # TODO: Create multiple forms for multiple products per order.
