@@ -2,9 +2,6 @@
 FROM python:3.7-slim-buster
 # Defining working directory and copy the requirements file. We will run the commands inside this new directory
 WORKDIR /usr/src/myapp
-RUN apt-get update
-RUN apt-get -y install gcc
-RUN apt-get -y install g++
 # Copy requirements.txt  to the working directory
 COPY requirements.txt .
 # Install required python packages
@@ -15,6 +12,5 @@ COPY . .
 EXPOSE 5000
 # Enviroment Variables
 ENV DB_URL  sqlite:///delivery.db
-ENV project_id group-6-34421
 # Run our App
-CMD ["python3","main.py"]
+CMD ["python3","app.py"]

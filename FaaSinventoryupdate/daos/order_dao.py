@@ -1,13 +1,17 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy.orm import relationship, backref
 
+from daos.content_dao import ContentDAO
 from db import Base
 
-# Create OrderDAO with order id, order creation time and order status
+
 class OrderDAO(Base):
     __tablename__ = 'order_table'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)  # Auto generated primary key
     order_time = Column(DateTime)
     status = Column(String)
+    # reference to status as foreign key relationship. This will be automatically assigned.
+
 
     def __init__(self, id, order_time, status):
         self.id = id

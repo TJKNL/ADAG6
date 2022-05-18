@@ -1,15 +1,13 @@
 from flask import Flask, request
-import logging
 
 from db import Base, engine
 from resources.order import Order
+from resources.content import Content
 
-# basic setup
 app = Flask(__name__)
 app.config["DEBUG"] = True
 Base.metadata.create_all(engine)
 
-logging.basicConfig(level=logging.INFO)
 
 @app.route('/order', methods=['POST'])
 def create_order():
@@ -22,9 +20,8 @@ def get_unfulfilled_orders():
     return Order.get_unfulfilled()
 
 @app.route('/order/<d_id>/<status>', methods=['PUT'])
-def update_order_status():
-    req_data = request.get_json()
-    return Order.update_status(req_data)
+def update_order_status(d_id, status):
+    return Order.update_status(d_id, status)
 
 
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5003)
