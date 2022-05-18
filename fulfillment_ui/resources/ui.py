@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 class FulfillmentForm(FlaskForm):
     # FlaskWTF form class.
     fulfilled = BooleanField("Fulfilled")
-    request = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order')
+    request = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order').json()
 
     # Track order_id as hidden field.
     id = HiddenField()
@@ -25,13 +25,13 @@ class FulfillmentForm(FlaskForm):
 
 def get_unfulfilled():
     form = FulfillmentForm()
-    r = form.request
+
     logging.info(f"Hoi hoi hier is de request {r.json()}.")
     #r2 = json.loads(r.data.decode("utf-8"))
     #logging.info(f"Hoi hoi hier is de request {r2}.")
     message = "No unfulfilled orders."
-    r = form
-    unfulfilled = r.json()
+
+    unfulfilled = form.request
     order_id = 0
     try:
         order_id = unfulfilled["order_id"]
