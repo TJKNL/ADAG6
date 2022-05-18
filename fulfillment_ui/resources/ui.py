@@ -29,6 +29,7 @@ def get_unfulfilled():
     message = ""
     unfulfilled = r.json()
     try:
+        order_id = unfulfilled["order_id"]
         unfulfilled = unfulfilled['order_content']
         no_orders = False
     except KeyError:
@@ -39,7 +40,6 @@ def get_unfulfilled():
                        '2': {'product_name': 'Leffe Blond', 'product_price': 2.5, 'quantity': 2}},
      'order_info': {'revenue': 4.5}}"""
 
-    order_id = 10
     form = FulfillmentForm()
     form.id.data = order_id
     forms.append(form)
