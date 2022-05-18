@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 import json
 
-from flask import Flask, render_template, rend
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
