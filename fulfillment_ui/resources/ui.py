@@ -26,7 +26,7 @@ def get_unfulfilled():
     logging.info(f"Hoi hoi hier is de request {r.json()}.")
     #r2 = json.loads(r.data.decode("utf-8"))
     #logging.info(f"Hoi hoi hier is de request {r2}.")
-    message = "No unfulfilled orders."
+    message = ""
     unfulfilled = r.json()
     order_id = 0
     try:
@@ -35,6 +35,8 @@ def get_unfulfilled():
         no_orders = False
     except KeyError:
         no_orders = True
+        message = "No orders to be fulfilled"
+
     forms = []
     info = []
     """{'order_content': {'1': {'product_name': 'TEST', 'product_price': 1.5, 'quantity': 2},
@@ -63,8 +65,8 @@ def get_unfulfilled():
             if data:
                 order_id = form.id.data
                 print(form.id.data, data)
-                message = f"Fulfillment processed for order: {order_id}"
-                requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id}))
+                message = f"Fulfillment processed for order: {order_id - 1}"
+                requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id - 1}))
     return info, message, forms
 
 
