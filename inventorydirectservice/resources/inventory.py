@@ -56,7 +56,7 @@ class Inventory:
             for p in inventory:
                 product_object = p.product  # link to product DB
                 text_out = {
-                    "product_id:": p.product_id,
+                    "product_id": p.product_id,
                     "product_name": product_object.product_name,
                     "product_price": p.product_price,
                     "product_count": p.product_quantity
