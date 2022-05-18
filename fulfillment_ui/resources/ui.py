@@ -28,30 +28,34 @@ def get_unfulfilled():
     #logging.info(f"Hoi hoi hier is de request {r2}.")
     message = ""
     unfulfilled = r.json()
-    unfulfilled = unfulfilled['order_content']
+    try:
+        unfulfilled = unfulfilled['order_content']
+    except KeyError:
+        no_orders = True
     forms = []
     info = []
     # For order in ...
     print("unfulfilled output test:")
     print(unfulfilled)
-    for key in unfulfilled.keys():
+    if not no_orders:
+        for key in unfulfilled.keys():
 
-        order_id = key
-        form = FulfillmentForm(prefix=order_id)
-        form.id.data = order_id
-        forms.append(form)
+            order_id = key
+            form = FulfillmentForm(prefix=order_id)
+            form.id.data = order_id
+            forms.append(form)
 
-        products = []
-        print(key)
-        try:
-            for key2 in unfulfilled[key]["order_content"].keys():
-                product = unfulfilled[key]["order_content"][key2]
-                product_name = product["product_name"]
-                product_quantity = product["quantity"]
-                products.append(f"{product_name} x {product_quantity}")
-            info.append([f"ID: {key}", products])
-        except Exception as ex:
-            print(ex)
+            products = []
+            print(key)
+            try:
+                for key2 in unfulfilled[key]["order_content"].keys():
+                    product = unfulfilled[key]["order_content"][key2]
+                    product_name = product["product_name"]
+                    product_quantity = product["quantity"]
+                    products.append(f"{product_name} x {product_quantity}")
+                info.append([f"ID: {key}", products])
+            except Exception as ex:
+                print(ex)
         return info, message, forms
 
 
