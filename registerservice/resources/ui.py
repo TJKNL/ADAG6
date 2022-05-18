@@ -28,6 +28,7 @@ class OrderForm(FlaskForm):
     else:
         menu = menu['menu']
         for item in menu:
+            logging.info(item)
             options.append((item['product_id'], f"{item['product_name']}: €{item['product_price']}"))
 
     # TODO: Create multiple forms for multiple products per order.
