@@ -42,6 +42,7 @@ def proces_order(form, menu):
     order = {}
     quantity = form.quantity.data
     product_id = form.product.data
+    product_id = int(product_id)
     # Check if requested quantity is within inventory limits.
     if quantity > menu[product_id]['quantity']:
         message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."
