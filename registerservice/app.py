@@ -31,7 +31,6 @@ def index():
     message = ""
     if form.validate_on_submit():
         if form.submit_order.data:
-            menu = menu["menu"]
             message = proces_order(form, menu)
     return render_template('index.html', form=form, message=message)
   
