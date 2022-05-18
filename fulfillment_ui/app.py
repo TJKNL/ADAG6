@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 import json
 
-from flask import Flask, render_template
+from flask import Flask, render_template, rend
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
@@ -26,7 +26,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 def index():
     info, message, forms = get_unfulfilled()
 
-    return render_template('index.html', message=message, forms=forms, info=info)
+    return 200 #render_template('index.html', message=message, forms=forms, info=info)
 
 
 app.run(host='0.0.0.0', port=5000)
