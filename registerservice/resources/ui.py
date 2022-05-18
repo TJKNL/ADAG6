@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-
+import logging
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, IntegerField, SelectField
@@ -29,6 +29,7 @@ class OrderForm(FlaskForm):
         for key in menu.keys():
             for item in menu[key]:
                 options.append((key, f"{item['product_name']}: €{item['product_price']}"))
+
     # TODO: Create multiple forms for multiple products per order.
     # SelectField is a dropdown with possible options.
     product = SelectField(
@@ -41,8 +42,11 @@ class OrderForm(FlaskForm):
 def proces_order(form, menu):
     order = {}
     quantity = form.quantity.data
+    logging.info(quantity)
     product_id = form.product.data
-    product_id = int(product_id)
+    logging.info(form.product)
+    logging.info(product_id)
+    
     # Check if requested quantity is within inventory limits.
     if quantity > menu[product_id]['quantity']:
         message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."

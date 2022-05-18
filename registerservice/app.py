@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-
+import logging
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, IntegerField, SelectField
@@ -13,7 +13,7 @@ from resources.ui import OrderForm, proces_order
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-
+logging.basicConfig(level=logging.INFO)
 # Initialize Flask Bootstrap for WTForm.
 bootstrap = Bootstrap(app)
 
