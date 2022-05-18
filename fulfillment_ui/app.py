@@ -26,7 +26,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 def index():
     info, message, forms = get_unfulfilled()
 
-    return 200 #render_template('index.html', message=message, forms=forms, info=info)
+    return render_template('index.html', message=message, forms=forms, info=info)
 
 
 app.run(host='0.0.0.0', port=5000)
