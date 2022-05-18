@@ -57,9 +57,9 @@ def proces_order(form, menu):
     order_content = {}
     for i in range(0, 1):
         order_content[product_id] = {
-            "product_name": menu[product_id]['name'],
-            "product_price": menu[product_id]['price'],
-            "quantity": menu[product_id]['quantity']
+            "product_name": menu[product_id]['product_name'],
+            "product_price": menu[product_id]['product_price'],
+            "order_quantity": quantity
         }
 
     order = {
