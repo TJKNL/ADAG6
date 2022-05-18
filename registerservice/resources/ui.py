@@ -17,7 +17,12 @@ class OrderForm(FlaskForm):
     menu = r.json()
     options = []
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
-    if menu["message"]:
+    try:
+        menu["message"]
+        empty_menu = True
+    except KeyError as ex:
+        empty_menu = False
+    if empty_menu:
         # Inventory is empty.
         pass
     else:
