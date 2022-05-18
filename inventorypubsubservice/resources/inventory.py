@@ -82,7 +82,7 @@ class Inventory:
         logging.info(order)
         for orders in order["order_content"].items():
             d_id = int(orders[0])
-            order_quantity = int(orders[1]["quantity"])
+            order_quantity = int(orders[1]["order_quantity"])
             effected_row = session.query(InventoryDAO).filter(InventoryDAO.product_id == d_id).first()
             if effected_row:
                 old_amount = effected_row.product_quantity
