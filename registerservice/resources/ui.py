@@ -26,10 +26,10 @@ class OrderForm(FlaskForm):
         # Inventory is empty.
         pass
     else:
-        menu = menu['menu']
-        for item in menu:
-            logging.info(item)
-            options.append((item['product_id'], f"{item['product_name']}: €{item['product_price']}"))
+        for key in menu.keys():
+            for item in menu[key]:
+
+                options.append((key, f"{item['product_name']}: €{item['product_price']}"))
 
     # TODO: Create multiple forms for multiple products per order.
     # SelectField is a dropdown with possible options.
@@ -42,15 +42,14 @@ class OrderForm(FlaskForm):
 
 def proces_order(form, menu):
     order = {}
+
     quantity = form.quantity.data
     product_id = form.product.data
 
     # Check if requested quantity is within inventory limits.
-    for item in menu:
-        if item["product_id"] == product_id:
-            if quantity > item['quantity']:
-                message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."
-                return render_template('index.html', form=form, message=message)
+    if quantity > menu[product_id]['quantity']:
+        message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."
+        return render_template('index.html', form=form, message=message)
     # Calculate order total price.
     revenue = quantity * menu[product_id]['price']
     # Give user feedback.
