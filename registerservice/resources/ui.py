@@ -27,9 +27,8 @@ class OrderForm(FlaskForm):
         pass
     else:
 
-        for key in menu.keys():
-            for item in menu[key]:
-                options.append((key, f"{item['product_name']}: €{item['product_price']}"))
+        for item in menu['menu']:
+            options.append((item['product_id'], f"{item['product_name']}: €{item['product_price']}"))
 
     # TODO: Create multiple forms for multiple products per order.
     # SelectField is a dropdown with possible options.
