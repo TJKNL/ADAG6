@@ -9,7 +9,7 @@ from wtforms import SubmitField, BooleanField, HiddenField
 from flask_bootstrap import Bootstrap
 
 
-from resources.ui import FulfillmentForm, get_unfulfilled, fulfill
+from resources.ui import get_unfulfilled
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
