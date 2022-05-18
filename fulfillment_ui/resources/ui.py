@@ -30,6 +30,7 @@ def get_unfulfilled():
     unfulfilled = r.json()
     try:
         unfulfilled = unfulfilled['order_content']
+        no_orders = False
     except KeyError:
         no_orders = True
     forms = []
