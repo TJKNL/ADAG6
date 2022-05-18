@@ -26,7 +26,7 @@ def get_unfulfilled():
     logging.info(f"Hoi hoi hier is de request {r.json()}.")
     #r2 = json.loads(r.data.decode("utf-8"))
     #logging.info(f"Hoi hoi hier is de request {r2}.")
-    message = ""
+    message = "No unfulfilled orders."
     unfulfilled = r.json()
     order_id = 0
     try:
