@@ -48,11 +48,10 @@ def get_unfulfilled():
     # For order in ...
     if not no_orders:
         for key in unfulfilled.keys():
-
             try:
                 product = unfulfilled[key]
                 product_name = product["product_name"]
-                product_quantity = product["quantity"]
+                product_quantity = product["order_quantity"]
                 products.append(f"{product_name} x {product_quantity}")
                 info.append([f"ID: {key}", products])
             except Exception as ex:
