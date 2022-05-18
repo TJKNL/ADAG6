@@ -15,6 +15,7 @@ class OrderForm(FlaskForm):
     # TODO: replace url with actual menu service. Assignment 2
     r = requests.get(url=' http://api_gateway_ct:8081/GetMenu')
     menu = r.json()
+    me
     options = []
     # Options are stored as (id, options_text). when products.data is retrieved, only id is returned.
     try:
@@ -26,8 +27,8 @@ class OrderForm(FlaskForm):
         # Inventory is empty.
         pass
     else:
-
-        for item in menu['menu']:
+        menu = menu['menu']
+        for item in menu:
             options.append((item['product_id'], f"{item['product_name']}: €{item['product_price']}"))
 
     # TODO: Create multiple forms for multiple products per order.
