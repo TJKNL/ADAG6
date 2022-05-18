@@ -25,12 +25,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @app.route('/fulfillment_ui', methods=['GET', 'POST'])
 def index():
     info, message, forms = get_unfulfilled()
-    for form in forms:
-        if form.validate_on_submit():
-            # Boolean field for fulfillment (checkmark).
-            data = form.fulfilled.data
-            if data:
-                message = fulfill(form, data)
+
     return render_template('index.html', message=message, forms=forms, info=info)
 
 

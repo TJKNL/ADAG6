@@ -56,6 +56,12 @@ def get_unfulfilled():
                 info.append([f"ID: {order_id}", products])
             except Exception as ex:
                 print(ex)
+    for form in forms:
+        if form.validate_on_submit():
+            # Boolean field for fulfillment (checkmark).
+            data = form.fulfilled.data
+            if data:
+                message = fulfill(form, data)
     return info, message, forms
 
 
