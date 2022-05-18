@@ -17,12 +17,12 @@ class FulfillmentForm(FlaskForm):
     def __init__(self):
         self.request = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order').json()
 
-    # FlaskWTF form class.
-    fulfilled = BooleanField("Fulfilled")
+        # FlaskWTF form class.
+        fulfilled = BooleanField("Fulfilled")
 
-    # Track order_id as hidden field.
-    id = HiddenField()
-    submit_order = SubmitField('Fulfill order')
+        # Track order_id as hidden field.
+        id = HiddenField()
+        submit_order = SubmitField('Fulfill order')
 
 
 def get_unfulfilled():
