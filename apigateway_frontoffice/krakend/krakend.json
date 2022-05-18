@@ -15,7 +15,7 @@
   "endpoints": [
     {
       "endpoint": "/NewOrder/{amount}",
-      "method": "GET",
+      "method": "POST",
       "extra_config": {
         "qos/ratelimit/router": {
             "max_rate": 1,
