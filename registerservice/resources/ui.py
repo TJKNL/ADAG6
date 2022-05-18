@@ -35,31 +35,31 @@ class OrderForm(FlaskForm):
     product = SelectField(
         'product:',
         choices=options)
-    quantity = IntegerField('Quantity:', validators=[DataRequired()])
+    order_quantity = IntegerField('Quantity:', validators=[DataRequired()])
     submit_order = SubmitField('Place Order')
 
 
 def proces_order(form, menu):
     order = {}
 
-    quantity = form.quantity.data
+    order_quantity = form.order_quantity.data
     product_id = form.product.data
 
-    # Check if requested quantity is within inventory limits.
-    if quantity > menu[product_id]['product_quantity']:
+    # Check if requested order_quantity is within inventory limits.
+    if order_quantity > menu[product_id]['product_quantity']:
         message = f"We are sorry, the ordered amount of {menu[product_id]['product_name']} is unavailable."
         return render_template('index.html', form=form, message=message)
     # Calculate order total price.
-    revenue = quantity * menu[product_id]['product_price']
+    revenue = order_quantity * menu[product_id]['product_price']
     # Give user feedback.
     message = f"Your order has been sent. Order total: €{revenue}"
     # Generate order JSON for subsequent services.
     order_content = {}
     for i in range(0, 1):
         order_content[int(product_id)] = {
-            "product_name": menu[product_id]['name'],
-            "product_price": menu[product_id]['price'],
-            "quantity": menu[product_id]['quantity']
+            "product_name": menu[product_id]['product_name'],
+            "product_price": menu[product_id]['product_price'],
+            "order_quantity": order_quantity
         }
 
     order = {
@@ -68,7 +68,7 @@ def proces_order(form, menu):
         },
         "order_content": order_content
     }
-
+    logging.info(order)
     requests.post(url=f"http://api_gateway_ct:8081/NewOrder/{revenue}", json=json.dumps(order))
     print(order)  # Print order for demo purposes.
     return message
