@@ -56,7 +56,7 @@ def get_unfulfilled():
                 info.append([f"ID: {key}", products])
             except Exception as ex:
                 print(ex)
-        return info, message, forms
+    return info, message, forms
 
 
 def fulfill(form, data):
