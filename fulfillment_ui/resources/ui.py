@@ -26,7 +26,7 @@ class FulfillmentForm(FlaskForm):
 def get_unfulfilled():
     form = FulfillmentForm()
 
-    logging.info(f"Hoi hoi hier is de request {r.json()}.")
+    #logging.info(f"Hoi hoi hier is de request {r.json()}.")
     #r2 = json.loads(r.data.decode("utf-8"))
     #logging.info(f"Hoi hoi hier is de request {r2}.")
     message = "No unfulfilled orders."
