@@ -42,13 +42,8 @@ class OrderForm(FlaskForm):
 
 def proces_order(form, menu):
     order = {}
-
-    logging.info(menu.keys())
     quantity = form.quantity.data
-
     product_id = form.product.data
-
-    logging.info(product_id)
 
     # Check if requested quantity is within inventory limits.
     if quantity > menu[product_id]['quantity']:
