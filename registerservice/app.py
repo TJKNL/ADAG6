@@ -27,6 +27,7 @@ def index():
     form = OrderForm()
     # Retrieve menu from class to avoid duplicate requests.
     menu = OrderForm.menu
+    logging.info(menu)
     # Message will be shown to the user. Initially empty.
     message = ""
     if form.validate_on_submit():
