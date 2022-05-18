@@ -26,7 +26,9 @@ class OrderForm(FlaskForm):
         # Inventory is empty.
         pass
     else:
+        logging.info(f"menu: {menu}")
         for key in menu.keys():
+            logging.info(f"key: {key}")
             for item in menu[key]:
                 options.append((key, f"{item['product_name']}: €{item['product_price']}"))
 
@@ -42,11 +44,10 @@ class OrderForm(FlaskForm):
 def proces_order(form, menu):
     order = {}
     quantity = form.quantity.data
-    logging.info(quantity)
     product_id = form.product.data
-    logging.info(form.product)
-    logging.info(product_id)
-    
+
+    logging.info(f"product_id: {product_id}")
+
     # Check if requested quantity is within inventory limits.
     if quantity > menu[product_id]['quantity']:
         message = f"We are sorry, the ordered amount of {menu[product_id]['name']} is unavailable."
