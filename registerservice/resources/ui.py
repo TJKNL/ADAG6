@@ -57,8 +57,8 @@ def proces_order(form, menu):
     order_content = {}
     for i in range(0, 1):
         order_content[int(product_id)] = {
-            "product_name": menu[product_id]['product_name'],
-            "product_price": menu[product_id]['product_price'],
+            "product_name": menu[product_id]["product_name"],
+            "product_price": menu[product_id]["product_price"],
             "order_quantity": order_quantity
         }
 
@@ -69,6 +69,6 @@ def proces_order(form, menu):
         "order_content": order_content
     }
     logging.info(order)
-    requests.post(url=f"http://api_gateway_ct:8081/NewOrder/{revenue}", json=json.dumps(order))
+    requests.post(url=f"http://api_gateway_ct:8081/NewOrder/{revenue}", data=json.dumps(order))
     print(order)  # Print order for demo purposes.
     return message
