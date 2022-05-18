@@ -61,7 +61,10 @@ def get_unfulfilled():
             # Boolean field for fulfillment (checkmark).
             data = form.fulfilled.data
             if data:
-                message = fulfill(form, data)
+                order_id = form.id.data
+                print(form.id.data, data)
+                message = f"Fulfillment processed for order: {order_id}"
+                requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id}))
     return info, message, forms
 
 
