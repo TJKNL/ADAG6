@@ -1,5 +1,5 @@
 import json
-
+import logging
 from daos.inventory_dao import InventoryDAO
 from daos.products_dao import ProductsDAO
 from db import Session
@@ -79,6 +79,7 @@ class Inventory:
 
     def reduce_inventory(self, order):
         session = Session()
+        logging.info(order)
         for orders in order["order_content"].items():
             d_id = int(orders[0])
             order_quantity = int(orders[1]["quantity"])
