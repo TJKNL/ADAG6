@@ -57,7 +57,7 @@ class Inventory:
                 text_out = {
                     "product_name": product_object.product_name,
                     "product_price": p.product_price,
-                    "product_count": p.product_quantity
+                    "product_quantity": p.product_quantity
                 }
                 menu[p.product_id] = text_out
 
