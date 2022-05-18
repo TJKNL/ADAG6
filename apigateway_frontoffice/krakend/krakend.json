@@ -91,7 +91,7 @@
           "disable_host_sanitize": true,
           "extra_config": {
             "backend/pubsub/subscriber": {
-              "subscription_url": "group-6-344214/topics/unfulfilled_orders"
+              "subscription_url": "project/group-6-344214/topics/unfulfilled_orders-sub"
             }
           }
         }
