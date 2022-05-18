@@ -35,9 +35,9 @@ def get_unfulfilled():
         no_orders = True
     forms = []
     info = []
-    {'order_content': {'1': {'product_name': 'TEST', 'product_price': 1.5, 'quantity': 2},
+    """{'order_content': {'1': {'product_name': 'TEST', 'product_price': 1.5, 'quantity': 2},
                        '2': {'product_name': 'Leffe Blond', 'product_price': 2.5, 'quantity': 2}},
-     'order_info': {'revenue': 4.5}}
+     'order_info': {'revenue': 4.5}}"""
 
     # For order in ...
     print("unfulfilled output test:")
