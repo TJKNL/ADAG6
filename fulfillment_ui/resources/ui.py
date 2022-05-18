@@ -14,9 +14,11 @@ logging.basicConfig(level=logging.INFO)
 
 
 class FulfillmentForm(FlaskForm):
+    def __init__(self):
+        self.request = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order').json()
+
     # FlaskWTF form class.
     fulfilled = BooleanField("Fulfilled")
-    request = requests.get(url='http://api_gateway_ct:8081/unfulfilled_order').json()
 
     # Track order_id as hidden field.
     id = HiddenField()
