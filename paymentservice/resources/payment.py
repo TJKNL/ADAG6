@@ -8,7 +8,7 @@ class Payment:
     @staticmethod
     def bank_request(amount):
         # accept payment if below 30. If above, client lacks te funds to pay for order.
-        amount = int(amount)
+        amount = float(amount)
         if amount < 30:
             return jsonify({"output": f"payment of {amount} successful"}), 200
         else:
