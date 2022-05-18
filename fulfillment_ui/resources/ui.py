@@ -28,6 +28,7 @@ def get_unfulfilled():
     #logging.info(f"Hoi hoi hier is de request {r2}.")
     message = ""
     unfulfilled = r.json()
+    unfulfilled = unfulfilled['order_content']
     forms = []
     info = []
     # For order in ...
