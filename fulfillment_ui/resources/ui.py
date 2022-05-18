@@ -39,9 +39,6 @@ def get_unfulfilled():
 
     forms = []
     info = []
-    """{'order_content': {'1': {'product_name': 'TEST', 'product_price': 1.5, 'quantity': 2},
-                       '2': {'product_name': 'Leffe Blond', 'product_price': 2.5, 'quantity': 2}},
-     'order_info': {'revenue': 4.5}}"""
 
     form = FulfillmentForm()
     form.id.data = order_id
@@ -65,8 +62,8 @@ def get_unfulfilled():
             if data:
                 order_id = form.id.data
                 print(form.id.data, data)
-                message = f"Fulfillment processed for order: {order_id - 1}"
-                requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id - 1}))
+                message = f"Your order has been fulfilled!"
+                requests.post(url="http://api_gateway_ct:8081/fulfilled_order", data=json.dumps({"order_id": order_id}))
     return info, message, forms
 
 
