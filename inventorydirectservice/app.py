@@ -53,7 +53,7 @@ def reduce_inventory():
     return Inventory.reduce_inventory(req_data)
 
 @app.route('/inventory/getall', methods=['GET'])
-def get_inventory():
+def get_all_inventory():
     return Inventory.get_all()
 
 app.run(host='0.0.0.0', port=5000)
