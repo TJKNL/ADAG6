@@ -6,12 +6,13 @@ from resources.content import Content
 import base64
 import json
 
+
 def update_order_status(event, context):
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     try:
         Order.update_status(pubsub_message)
-        
+
     except:
         print("error", ex)
         logging.info(f"Error creating subscription, the exception: {ex}.")
