@@ -49,7 +49,7 @@ def proces_order(form, menu):
     if order_quantity > menu[product_id]['product_quantity']:
         m_content = menu[product_id]['product_name']
         message = f"We are sorry, the ordered amount of {m_content} is unavailable."
-        return render_template('index.html', form=form, message=message)
+        return message
     # Calculate order total price.
     revenue = order_quantity * menu[product_id]['product_price']
     # Give user feedback.
