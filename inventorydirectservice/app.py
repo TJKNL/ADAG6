@@ -52,5 +52,8 @@ def reduce_inventory():
     req_data = request.get_json()
     return Inventory.reduce_inventory(req_data)
 
+@app.route('/inventory/getall', methods=['GET'])
+def get_inventory():
+    return Inventory.get_all()
 
 app.run(host='0.0.0.0', port=5000)
