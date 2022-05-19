@@ -92,3 +92,27 @@ class Inventory:
             session.commit()
             session.close()
         return jsonify({'message': 'The quantity was reduced from inventory'}), 200
+
+    @staticmethod
+    def get_nonzero():
+        session = Session()
+        # https://docs.sqlalchemy.org/en/14/orm/query.html
+        # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.html
+        inventory = session.query(InventoryDAO).all()
+
+        if inventory:
+            menu = {}
+            for p in inventory:
+                product_object = p.product  # link to product DB
+                text_out = {
+                    "product_name": product_object.product_name,
+                    "product_price": p.product_price,
+                    "product_quantity": p.product_quantity
+                }
+                menu[p.product_id] = text_out
+
+            session.close()
+            return jsonify(menu), 200
+        else:
+            session.close()
+            return jsonify({'message': f'There are no items in inventory'}), 200
