@@ -47,7 +47,8 @@ def proces_order(form, menu):
 
     # Check if requested order_quantity is within inventory limits.
     if order_quantity > menu[product_id]['product_quantity']:
-        message = f"We are sorry, the ordered amount of {menu[product_id]['product_name']} is unavailable."
+        m_content = menu[product_id]['product_name']
+        message = f"We are sorry, the ordered amount of {m_content} is unavailable."
         return render_template('index.html', form=form, message=message)
     # Calculate order total price.
     revenue = order_quantity * menu[product_id]['product_price']
